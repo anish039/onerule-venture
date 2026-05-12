@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!-- OneRule Venture — dashboard.html (Business Owner Dashboard) -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – OneRule Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="loading-screen" class="loading-screen" aria-hidden="true">
+  <div class="loading-logo">
+    <div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>
+    OneRule Venture
+  </div>
+  <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+</div>
+
+<div class="dashboard-layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="dashboard-sidebar" role="navigation" aria-label="Dashboard navigation">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i class="fas fa-bolt"></i></div>
+      OneRule
+    </div>
+
+    <div class="sidebar-section-label">Overview</div>
+    <div class="sidebar-nav">
+      <div class="sidebar-item active"><i class="fas fa-th-large"></i> Dashboard</div>
+      <div class="sidebar-item"><i class="fas fa-chart-line"></i> Revenue</div>
+      <div class="sidebar-item"><i class="fas fa-heartbeat"></i> Business Health</div>
+    </div>
+
+    <div class="sidebar-section-label">Intelligence</div>
+    <div class="sidebar-nav">
+      <div class="sidebar-item"><i class="fas fa-chart-bar"></i> Industry Trends</div>
+      <div class="sidebar-item"><i class="fas fa-newspaper"></i> Market News</div>
+      <div class="sidebar-item"><i class="fas fa-file-alt"></i> Reports</div>
+    </div>
+
+    <div class="sidebar-section-label">Tools</div>
+    <div class="sidebar-nav">
+      <a href="tools.html" class="sidebar-item"><i class="fas fa-calculator"></i> Business Tools</a>
+      <a href="startup-resources.html" class="sidebar-item"><i class="fas fa-seedling"></i> Resources</a>
+    </div>
+
+    <div class="sidebar-section-label">Account</div>
+    <div class="sidebar-nav">
+      <div class="sidebar-item"><i class="fas fa-cog"></i> Settings</div>
+      <div class="sidebar-item" onclick="window.location='index.html'"><i class="fas fa-sign-out-alt"></i> Exit Dashboard</div>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+      <div>
+        <h2>Good morning, 👋</h2>
+        <p class="text-muted">Here's what's happening with your business today — May 9, 2025</p>
+      </div>
+      <div class="dash-actions">
+        <button class="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export</button>
+        <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New Report</button>
+      </div>
+    </div>
+
+    <!-- Alert -->
+    <div class="alert-strip">
+      <i class="fas fa-exclamation-triangle"></i>
+      <div>
+        <strong>Risk Alert:</strong> Accounts receivable aging > 60 days has increased by 18% this month. Consider reviewing payment terms.
+        <a href="#" style="color:var(--color-warning);font-weight:600;margin-left:8px">Review →</a>
+      </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <div class="kpi-icon icon-blue"><i class="fas fa-rupee-sign"></i></div>
+          <span class="kpi-change kpi-up"><i class="fas fa-arrow-up"></i> +18.4%</span>
+        </div>
+        <div class="kpi-value">₹56.2L</div>
+        <div class="kpi-label">Monthly Revenue</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <div class="kpi-icon icon-green"><i class="fas fa-users"></i></div>
+          <span class="kpi-change kpi-up"><i class="fas fa-arrow-up"></i> +6.2%</span>
+        </div>
+        <div class="kpi-value">1,248</div>
+        <div class="kpi-label">Active Customers</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <div class="kpi-icon icon-amber"><i class="fas fa-percentage"></i></div>
+          <span class="kpi-change kpi-down"><i class="fas fa-arrow-down"></i> -2.1%</span>
+        </div>
+        <div class="kpi-value">38.5%</div>
+        <div class="kpi-label">Gross Margin</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <div class="kpi-icon icon-teal"><i class="fas fa-star"></i></div>
+          <span class="kpi-change kpi-up"><i class="fas fa-arrow-up"></i> +5pts</span>
+        </div>
+        <div class="kpi-value">76/100</div>
+        <div class="kpi-label">Business Health Score</div>
+      </div>
+    </div>
+
+    <!-- Revenue Chart + Score -->
+    <div class="dash-grid-2">
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <h4>Revenue Trend</h4>
+          <div class="d-flex gap-12">
+            <button class="btn btn-ghost btn-sm" style="font-size:.75rem">Monthly</button>
+            <button class="btn btn-ghost btn-sm" style="font-size:.75rem">Quarterly</button>
+          </div>
+        </div>
+        <div style="height:220px;position:relative">
+          <canvas id="revenueChart"></canvas>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <h4>Business Health Score</h4>
+        </div>
+        <div class="score-ring-wrap">
+          <div class="score-ring">
+            <div class="score-inner">
+              <span class="score-number">76</span>
+              <span class="score-sub">/ 100</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">
+          <div style="background:var(--color-surface);border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:.72rem;color:var(--color-text-muted);margin-bottom:4px">Operations</div>
+            <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--color-success)">82</div>
+          </div>
+          <div style="background:var(--color-surface);border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:.72rem;color:var(--color-text-muted);margin-bottom:4px">Finance</div>
+            <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--color-warning)">71</div>
+          </div>
+          <div style="background:var(--color-surface);border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:.72rem;color:var(--color-text-muted);margin-bottom:4px">Marketing</div>
+            <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--color-accent)">68</div>
+          </div>
+          <div style="background:var(--color-surface);border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:.72rem;color:var(--color-text-muted);margin-bottom:4px">Team</div>
+            <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--color-success)">88</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="dash-grid-2">
+      <!-- Sector Breakdown -->
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <h4>Revenue by Sector</h4>
+        </div>
+        <div style="height:200px;position:relative">
+          <canvas id="sectorChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Recent Insights -->
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <h4>Recent Insights</h4>
+          <a href="services.html" style="font-size:.8rem;color:var(--color-accent);font-weight:600">View All</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="insight-small" style="padding:14px 16px">
+            <div class="insight-small-icon icon-blue" style="width:36px;height:36px"><i class="fas fa-chart-line" style="font-size:.85rem"></i></div>
+            <div class="insight-small-text">
+              <h4 style="font-size:.85rem">Your sector grew 12% last quarter</h4>
+              <p style="font-size:.76rem">Logistics tech outperforms market average by 4.2 pp</p>
+            </div>
+          </div>
+          <div class="insight-small" style="padding:14px 16px">
+            <div class="insight-small-icon icon-amber" style="width:36px;height:36px"><i class="fas fa-bullseye" style="font-size:.85rem"></i></div>
+            <div class="insight-small-text">
+              <h4 style="font-size:.85rem">3 government schemes you qualify for</h4>
+              <p style="font-size:.76rem">MSME loan guarantee, PLI scheme, and Export promotion</p>
+            </div>
+          </div>
+          <div class="insight-small" style="padding:14px 16px">
+            <div class="insight-small-icon icon-green" style="width:36px;height:36px"><i class="fas fa-lightbulb" style="font-size:.85rem"></i></div>
+            <div class="insight-small-text">
+              <h4 style="font-size:.85rem">New opportunity: B2B fleet management SaaS</h4>
+              <p style="font-size:.76rem">TAM ₹2,400 Cr with only 3 direct competitors nationally</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

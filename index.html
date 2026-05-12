@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<!-- OneRule Venture — index.html (Home Page) -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="OneRule Venture – Business intelligence, startup guidance, industry insights, and growth tools for entrepreneurs and business owners in India." />
+  <meta name="keywords" content="business intelligence, startup, entrepreneur, MSME, India, funding, government schemes" />
+  <meta property="og:title" content="OneRule Venture – Helping Entrepreneurs Build Smarter Businesses" />
+  <meta property="og:type" content="website" />
+  <title>OneRule Venture – Helping Entrepreneurs Build Smarter Businesses</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading-screen" class="loading-screen" aria-hidden="true">
+  <div class="loading-logo">
+    <div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>
+    OneRule Venture
+  </div>
+  <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+</div>
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<header class="navbar" role="banner">
+  <div class="navbar-inner">
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo" aria-label="OneRule Venture Home">
+      <div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>
+      OneRule Venture
+    </a>
+    <!-- Center Links -->
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
+      <a href="index.html" class="active">Home</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <!-- Right actions -->
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <a href="dashboard.html" class="btn btn-outline btn-sm">Login</a>
+      <a href="dashboard.html" class="nav-profile" aria-label="Profile"><i class="fas fa-user"></i></a>
+    </div>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="tools.html">Tools</a>
+  <a href="about.html">About</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="contact.html">Contact</a>
+  <a href="dashboard.html">Login / Dashboard</a>
+</nav>
+
+<main>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero" aria-labelledby="hero-headline">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid-overlay" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-content">
+      <!-- Badge -->
+      <div class="hero-badge">
+        <span class="hero-badge-dot"><i class="fas fa-bolt"></i></span>
+        India's #1 Business Intelligence Platform for Entrepreneurs
+      </div>
+      <!-- Headline -->
+      <h1 id="hero-headline">Helping Entrepreneurs<br>Build <em>Smarter Businesses</em></h1>
+      <p class="hero-sub text-muted">Business intelligence, startup guidance, industry insights, and growth tools — all in one platform built for Indian entrepreneurs.</p>
+      <!-- CTAs -->
+      <div class="hero-cta-group d-flex align-center gap-12" style="justify-content:center;flex-wrap:wrap">
+        <a href="dashboard.html" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Get Started Free</a>
+        <a href="services.html" class="btn btn-outline btn-lg">Explore Services</a>
+      </div>
+      <!-- User Selection Cards -->
+      <div class="user-select-cards">
+        <!-- Card 1 -->
+        <div class="user-card" onclick="window.location='dashboard.html'" tabindex="0" role="button" aria-label="I'm an Existing Business Owner">
+          <div class="user-card-icon"><i class="fas fa-building"></i></div>
+          <h3>Existing Business Owner</h3>
+          <p>Analyze your business health, track market trends, and access curated growth strategies.</p>
+          <a href="dashboard.html" class="btn btn-dark btn-sm w-full" style="justify-content:center">
+            Go to Dashboard <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <!-- Card 2 -->
+        <div class="user-card" onclick="window.location='startup-resources.html'" tabindex="0" role="button" aria-label="I'm a Budding Entrepreneur">
+          <div class="user-card-icon" style="background:linear-gradient(135deg,#10b981,#0ea5e9)"><i class="fas fa-seedling"></i></div>
+          <h3>Budding Entrepreneur</h3>
+          <p>Discover startup ideas, government schemes, funding opportunities, and step-by-step guidance.</p>
+          <a href="startup-resources.html" class="btn btn-dark btn-sm w-full" style="justify-content:center">
+            Start Your Journey <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ STATS BAR ══════════════════ -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item animate-on-scroll">
+        <div class="stat-number"><span data-count="12000" data-suffix="+">12000+</span></div>
+        <div class="stat-label">Entrepreneurs Helped</div>
+      </div>
+      <div class="stat-item animate-on-scroll stagger-1">
+        <div class="stat-number"><span data-count="340" data-suffix="+">340+</span></div>
+        <div class="stat-label">Industry Reports</div>
+      </div>
+      <div class="stat-item animate-on-scroll stagger-2">
+        <div class="stat-number"><span data-count="95" data-suffix="%">95%</span></div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat-item animate-on-scroll stagger-3">
+        <div class="stat-number"><span data-count="50" data-suffix="+">50+</span></div>
+        <div class="stat-label">Government Schemes Tracked</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ DAILY INDUSTRY UPDATES ══════════════════ -->
+<section class="section" aria-labelledby="updates-heading">
+  <div class="container">
+    <div class="section-header animate-on-scroll" style="margin-bottom:40px">
+      <div class="section-label"><i class="fas fa-newspaper"></i> Live Updates</div>
+      <h2 id="updates-heading">Daily Industry Updates</h2>
+      <p>Stay ahead with the latest from startup ecosystems, policy changes, and market movements.</p>
+    </div>
+    <div class="updates-scroll-wrap">
+      <div class="updates-scroll" role="list">
+
+        <article class="news-card" role="listitem">
+          <div class="news-meta">
+            <span class="news-tag tag-funding">Funding</span>
+            <span class="news-date"><i class="far fa-calendar"></i> May 9, 2025</span>
+          </div>
+          <h4>Meesho Raises ₹1,200 Cr in Series G, Eyes Tier-3 Expansion</h4>
+          <p>Social commerce platform strengthens its position in underserved markets with massive capital influx.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+        <article class="news-card" role="listitem">
+          <div class="news-meta">
+            <span class="news-tag tag-policy">Policy</span>
+            <span class="news-date"><i class="far fa-calendar"></i> May 8, 2025</span>
+          </div>
+          <h4>Govt Launches ₹10,000 Cr MSME Innovation Fund for FY26</h4>
+          <p>New fund targets deep-tech and green manufacturing startups across 15 identified sectors.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+        <article class="news-card" role="listitem">
+          <div class="news-meta">
+            <span class="news-tag tag-market">Market</span>
+            <span class="news-date"><i class="far fa-calendar"></i> May 8, 2025</span>
+          </div>
+          <h4>EV Sector Sees 68% YoY Growth — Opportunity for Ancillary Businesses</h4>
+          <p>Charging infra, battery recycling, and fleet management emerge as hottest adjacent segments.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+        <article class="news-card" role="listitem">
+          <div class="news-meta">
+            <span class="news-tag tag-startup">Startup</span>
+            <span class="news-date"><i class="far fa-calendar"></i> May 7, 2025</span>
+          </div>
+          <h4>India Adds 5 New Unicorns in Q1 2025 — Fintech Leads the Pack</h4>
+          <p>With 140+ unicorns, India cements 3rd-place globally; B2B SaaS and agritech on watch list.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+        <article class="news-card" role="listitem">
+          <div class="news-meta">
+            <span class="news-tag tag-industry">Industry</span>
+            <span class="news-date"><i class="far fa-calendar"></i> May 7, 2025</span>
+          </div>
+          <h4>D2C Brands Hit ₹1 Lakh Cr GMV — Omnichannel Strategy Key Differentiator</h4>
+          <p>Top-performing D2C brands reveal that offline presence now drives 38% of total revenue.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+        <article class="news-card" role="listitem">
+          <div class="news-meta">
+            <span class="news-tag tag-policy">Policy</span>
+            <span class="news-date"><i class="far fa-calendar"></i> May 6, 2025</span>
+          </div>
+          <h4>PLI Scheme Extended to 4 More Sectors Including Textiles and Chemicals</h4>
+          <p>Production-linked incentives now cover 20 sectors with total outlay of ₹2 lakh crore.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+        <article class="news-card" role="listitem">
+          <div class="news-meta">
+            <span class="news-tag tag-funding">Funding</span>
+            <span class="news-date"><i class="far fa-calendar"></i> May 6, 2025</span>
+          </div>
+          <h4>Zepto Eyes IPO in 2025, Valuation Crosses $5 Billion Mark</h4>
+          <p>Quick-commerce leader accelerates profitability drive as public market debut approaches.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CORE SERVICES ══════════════════ -->
+<section class="section" style="background:var(--color-surface)" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-header centered animate-on-scroll" style="margin-bottom:56px">
+      <div class="section-label"><i class="fas fa-th-large"></i> What We Offer</div>
+      <h2 id="services-heading">Everything You Need to Grow</h2>
+      <p>Four powerful pillars that give your business a competitive edge — from diagnostics to discovery.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="feature-card animate-on-scroll">
+        <div class="feature-icon icon-blue"><i class="fas fa-heartbeat"></i></div>
+        <h3>Check Business Health</h3>
+        <p>Run a comprehensive analysis on growth, operations, cash flow, and market performance. Identify risks before they become problems.</p>
+        <a href="tools.html" class="card-link">Run Analysis <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="feature-card animate-on-scroll stagger-1">
+        <div class="feature-icon icon-teal"><i class="fas fa-lightbulb"></i></div>
+        <h3>Idea Opportunities</h3>
+        <p>Discover trending business opportunities based on market gaps, consumer behavior, and sectoral data curated for Indian markets.</p>
+        <a href="startup-resources.html" class="card-link">Explore Ideas <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="feature-card animate-on-scroll stagger-2">
+        <div class="feature-icon icon-green"><i class="fas fa-landmark"></i></div>
+        <h3>Government Schemes</h3>
+        <p>Access a curated database of MSME, Startup India, SIDBI, and state-level schemes with eligibility filters and application guides.</p>
+        <a href="startup-resources.html#schemes" class="card-link">Find Schemes <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="feature-card animate-on-scroll stagger-3">
+        <div class="feature-icon icon-amber"><i class="fas fa-chart-bar"></i></div>
+        <h3>Industry Reports</h3>
+        <p>Download sector-specific market research, trend analyses, and competitive intelligence reports updated every quarter.</p>
+        <a href="services.html" class="card-link">Browse Reports <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ WHY CHOOSE US ══════════════════ -->
+<section class="section" aria-labelledby="why-heading">
+  <div class="container">
+    <div class="why-grid">
+      <!-- Visual -->
+      <div class="why-visual animate-on-scroll">
+        <div class="why-visual-inner">
+          <div class="mini-card">
+            <div class="mini-card-icon">📈</div>
+            <div class="mini-card-label">Revenue Growth</div>
+            <div class="mini-card-value">+42%</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-icon">🏆</div>
+            <div class="mini-card-label">Success Rate</div>
+            <div class="mini-card-value">94%</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-icon">💰</div>
+            <div class="mini-card-label">Funding Raised</div>
+            <div class="mini-card-value">₹480Cr</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-icon">🚀</div>
+            <div class="mini-card-label">Startups Launched</div>
+            <div class="mini-card-value">2,400+</div>
+          </div>
+        </div>
+        <div style="margin-top:24px;background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:20px">
+          <div class="d-flex align-center justify-between mb-8">
+            <span style="font-size:.82rem;font-weight:600;color:var(--color-text-muted)">Platform Activity</span>
+            <span style="font-size:.75rem;color:var(--color-success)">● Live</span>
+          </div>
+          <div style="display:flex;gap:4px;align-items:flex-end;height:48px">
+            <div style="flex:1;background:var(--color-accent);opacity:.3;border-radius:3px 3px 0 0;height:40%"></div>
+            <div style="flex:1;background:var(--color-accent);opacity:.5;border-radius:3px 3px 0 0;height:60%"></div>
+            <div style="flex:1;background:var(--color-accent);opacity:.7;border-radius:3px 3px 0 0;height:75%"></div>
+            <div style="flex:1;background:var(--color-accent);border-radius:3px 3px 0 0;height:100%"></div>
+            <div style="flex:1;background:var(--color-accent);opacity:.8;border-radius:3px 3px 0 0;height:85%"></div>
+            <div style="flex:1;background:var(--color-accent);opacity:.6;border-radius:3px 3px 0 0;height:65%"></div>
+            <div style="flex:1;background:var(--color-accent-2);border-radius:3px 3px 0 0;height:90%"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Text -->
+      <div class="animate-on-scroll stagger-1">
+        <div class="section-header">
+          <div class="section-label"><i class="fas fa-star"></i> Why OneRule</div>
+          <h2 id="why-heading">Built for the Indian Business Ecosystem</h2>
+          <p>We combine real-time data, AI-driven insights, and domain expertise to give you an unfair advantage.</p>
+        </div>
+        <div class="why-points mt-32">
+          <div class="why-point">
+            <div class="why-point-icon icon-blue"><i class="fas fa-database"></i></div>
+            <div class="why-point-text">
+              <h4>Real-Time Data Intelligence</h4>
+              <p>Live feeds from BSE, SEBI, DPIIT, and 200+ industry sources — all filtered for your sector.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-icon icon-green"><i class="fas fa-robot"></i></div>
+            <div class="why-point-text">
+              <h4>AI-Powered Business Insights</h4>
+              <p>Machine learning models trained on thousands of Indian business datasets surface actionable strategies.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-icon icon-amber"><i class="fas fa-users"></i></div>
+            <div class="why-point-text">
+              <h4>Expert Mentor Network</h4>
+              <p>Connect with 500+ verified mentors, CA/CS professionals, and industry veterans on-demand.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-icon icon-teal"><i class="fas fa-shield-alt"></i></div>
+            <div class="why-point-text">
+              <h4>Trusted by 12,000+ Entrepreneurs</h4>
+              <p>From solo founders to mid-size enterprises, our platform scales with your ambition.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ INDUSTRY INSIGHTS PREVIEW ══════════════════ -->
+<section class="section" style="background:var(--color-surface)" aria-labelledby="insights-heading">
+  <div class="container">
+    <div class="section-header centered animate-on-scroll" style="margin-bottom:48px">
+      <div class="section-label"><i class="fas fa-chart-line"></i> Intelligence</div>
+      <h2 id="insights-heading">Industry Insights</h2>
+      <p>Deep-dive analyses to sharpen your strategic thinking.</p>
+    </div>
+    <div class="insights-grid animate-on-scroll">
+      <div class="insight-big">
+        <span class="news-tag tag-market">Featured Report</span>
+        <h3>India's Startup Ecosystem Report 2025: The Next Wave of Innovation</h3>
+        <p>500+ pages of data on sectors, funding trends, regional hubs, and policy landscape shaping the decade.</p>
+        <a href="services.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.3)">Download Free <i class="fas fa-download"></i></a>
+      </div>
+      <div class="insights-side">
+        <div class="insight-small">
+          <div class="insight-small-icon icon-teal"><i class="fas fa-bolt"></i></div>
+          <div class="insight-small-text">
+            <h4>Clean Energy Opportunity Index 2025</h4>
+            <p>India's ₹35L Cr green economy roadmap creates 240+ business opportunities.</p>
+          </div>
+        </div>
+        <div class="insight-small">
+          <div class="insight-small-icon icon-amber"><i class="fas fa-store"></i></div>
+          <div class="insight-small-text">
+            <h4>Retail Transformation: Tier-2 & 3 Market Deep Dive</h4>
+            <p>240M new consumers entering formal retail in next 5 years — here's how to capture them.</p>
+          </div>
+        </div>
+        <div class="insight-small">
+          <div class="insight-small-icon icon-green"><i class="fas fa-seedling"></i></div>
+          <div class="insight-small-text">
+            <h4>AgriTech Revolution: ₹6 Lakh Cr Market Opportunity</h4>
+            <p>From precision farming to farm-to-fork supply chains — where smart money is moving.</p>
+          </div>
+        </div>
+        <div class="insight-small">
+          <div class="insight-small-icon icon-purple"><i class="fas fa-brain"></i></div>
+          <div class="insight-small-text">
+            <h4>AI Adoption in Indian SMEs: Barriers & Breakthroughs</h4>
+            <p>Only 8% of SMEs use AI today. The gap is your opportunity — exclusive survey data inside.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ TESTIMONIALS ══════════════════ -->
+<section class="section" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="section-header centered animate-on-scroll" style="margin-bottom:48px">
+      <div class="section-label"><i class="fas fa-quote-right"></i> Testimonials</div>
+      <h2 id="testimonials-heading">Trusted by Entrepreneurs Across India</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card animate-on-scroll">
+        <div class="stars">★★★★★</div>
+        <blockquote>"OneRule Venture's health score tool helped me identify a cash-flow bottleneck I had missed for 8 months. Fixed it, and revenue jumped 34% in the next quarter."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">RK</div>
+          <div class="author-info">
+            <h5>Rajesh Kumar</h5>
+            <span>Founder, SwiftCargo Logistics, Mumbai</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card animate-on-scroll stagger-1">
+        <div class="stars">★★★★★</div>
+        <blockquote>"As a first-time entrepreneur, the startup roadmap and government schemes section saved me months of research. Got SIDBI funding within 60 days of signing up!"</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">PS</div>
+          <div class="author-info">
+            <h5>Priya Sharma</h5>
+            <span>Co-Founder, GreenLeaf Foods, Bengaluru</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card animate-on-scroll stagger-2">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The industry reports are genuinely best-in-class. I've cancelled three expensive research subscriptions since joining OneRule — and the quality is better here."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">AM</div>
+          <div class="author-info">
+            <h5>Arjun Mehta</h5>
+            <span>CEO, NexGen Manufacturing, Pune</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ NEWSLETTER ══════════════════ -->
+<section class="section-sm">
+  <div class="container">
+    <div class="newsletter-section animate-on-scroll">
+      <div class="newsletter-inner">
+        <div>
+          <div class="section-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)"><i class="fas fa-envelope"></i> Newsletter</div>
+          <h2>Get Weekly Business Intelligence in Your Inbox</h2>
+          <p>Join 35,000+ entrepreneurs receiving curated insights every Monday morning.</p>
+        </div>
+        <div>
+          <form class="newsletter-form" aria-label="Newsletter subscription">
+            <input type="email" placeholder="Your email address" aria-label="Email address" required />
+            <button type="submit">Subscribe <i class="fas fa-arrow-right"></i></button>
+          </form>
+          <p style="color:rgba(255,255,255,.4);font-size:.78rem;margin-top:12px">No spam. Unsubscribe anytime. Privacy guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon"><i class="fas fa-bolt"></i></div>
+          OneRule Venture
+        </div>
+        <p>Empowering India's entrepreneurs with intelligence, tools, and guidance to build businesses that matter.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <ul>
+          <li><a href="dashboard.html">Business Dashboard</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="startup-resources.html">Startup Resources</a></li>
+          <li><a href="services.html">Industry Reports</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#team">Our Team</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Access</a></li>
+          <li><a href="#">Partner Program</a></li>
+          <li><a href="#">Press Kit</a></li>
+          <li><a href="#">Help Center</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 OneRule Venture. All rights reserved. Made with ❤️ in India.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

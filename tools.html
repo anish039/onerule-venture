@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!-- OneRule Venture — tools.html -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free business tools for entrepreneurs – health score, cost estimator, profit margin, and market opportunity checker." />
+  <title>Business Tools – OneRule Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="loading-screen" class="loading-screen" aria-hidden="true">
+  <div class="loading-logo"><div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>OneRule Venture</div>
+  <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+</div>
+
+<!-- Navbar -->
+<header class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>OneRule Venture</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+      <a href="dashboard.html" class="btn btn-outline btn-sm">Login</a>
+      <a href="dashboard.html" class="nav-profile"><i class="fas fa-user"></i></a>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="tools.html">Tools</a>
+  <a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a>
+</nav>
+
+<main>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label"><i class="fas fa-calculator"></i> Free Tools</div>
+    <h1>Business Intelligence Tools</h1>
+    <p>Free, interactive tools to analyze, estimate, and optimize your business performance — no sign-up required.</p>
+  </div>
+</section>
+
+<!-- Tools Grid -->
+<section class="section">
+  <div class="container">
+    <div class="cards-grid">
+
+      <!-- Tool 1: Business Health Score -->
+      <div class="tool-card animate-on-scroll">
+        <div class="tool-header">
+          <div class="tool-icon icon-blue"><i class="fas fa-heartbeat"></i></div>
+          <div>
+            <h3>Business Health Score</h3>
+            <p>Get your overall health score out of 100</p>
+          </div>
+        </div>
+        <div class="tool-input-group">
+          <label for="h-revenue">Monthly Revenue (₹)</label>
+          <input class="tool-input" id="h-revenue" type="number" placeholder="e.g. 500000" min="0" />
+        </div>
+        <div class="tool-input-group">
+          <label for="h-growth">Month-over-Month Growth (%)</label>
+          <input class="tool-input" id="h-growth" type="number" placeholder="e.g. 8" min="0" max="100" />
+        </div>
+        <div class="tool-input-group">
+          <label for="h-customers">Number of Active Customers</label>
+          <input class="tool-input" id="h-customers" type="number" placeholder="e.g. 150" min="0" />
+        </div>
+        <button class="btn btn-primary w-full" id="calc-health" style="justify-content:center">
+          <i class="fas fa-calculator"></i> Calculate Score
+        </button>
+        <div class="tool-result" id="health-result">
+          <span style="color:var(--color-text-muted);font-size:.88rem">Enter values and click calculate</span>
+        </div>
+      </div>
+
+      <!-- Tool 2: Startup Cost Estimator -->
+      <div class="tool-card animate-on-scroll stagger-1">
+        <div class="tool-header">
+          <div class="tool-icon icon-teal"><i class="fas fa-coins"></i></div>
+          <div>
+            <h3>Startup Cost Estimator</h3>
+            <p>Estimate your 6-month budget with buffer</p>
+          </div>
+        </div>
+        <div class="tool-input-group">
+          <label for="c-team">Monthly Team Cost (₹)</label>
+          <input class="tool-input" id="c-team" type="number" placeholder="e.g. 150000" min="0" />
+        </div>
+        <div class="tool-input-group">
+          <label for="c-tech">Monthly Tech/Infra Cost (₹)</label>
+          <input class="tool-input" id="c-tech" type="number" placeholder="e.g. 30000" min="0" />
+        </div>
+        <div class="tool-input-group">
+          <label for="c-mktg">Monthly Marketing Budget (₹)</label>
+          <input class="tool-input" id="c-mktg" type="number" placeholder="e.g. 50000" min="0" />
+        </div>
+        <button class="btn btn-primary w-full" id="calc-cost" style="justify-content:center">
+          <i class="fas fa-calculator"></i> Estimate Budget
+        </button>
+        <div class="tool-result" id="cost-result">
+          <span style="color:var(--color-text-muted);font-size:.88rem">Enter monthly costs to estimate</span>
+        </div>
+      </div>
+
+      <!-- Tool 3: Profit Margin Calculator -->
+      <div class="tool-card animate-on-scroll stagger-2">
+        <div class="tool-header">
+          <div class="tool-icon icon-green"><i class="fas fa-percent"></i></div>
+          <div>
+            <h3>Profit Margin Calculator</h3>
+            <p>Instantly calculate your gross margin</p>
+          </div>
+        </div>
+        <div class="tool-input-group">
+          <label for="m-revenue">Total Revenue (₹)</label>
+          <input class="tool-input" id="m-revenue" type="number" placeholder="e.g. 1000000" min="0" />
+        </div>
+        <div class="tool-input-group">
+          <label for="m-cost">Total Cost of Goods Sold (₹)</label>
+          <input class="tool-input" id="m-cost" type="number" placeholder="e.g. 600000" min="0" />
+        </div>
+        <div class="tool-input-group" style="opacity:0;pointer-events:none">
+          <label>Spacer</label>
+          <input class="tool-input" />
+        </div>
+        <button class="btn btn-primary w-full" id="calc-margin" style="justify-content:center">
+          <i class="fas fa-calculator"></i> Calculate Margin
+        </button>
+        <div class="tool-result" id="margin-result">
+          <span style="color:var(--color-text-muted);font-size:.88rem">Enter revenue and cost to calculate</span>
+        </div>
+      </div>
+
+      <!-- Tool 4: Market Opportunity Checker -->
+      <div class="tool-card animate-on-scroll stagger-3">
+        <div class="tool-header">
+          <div class="tool-icon icon-amber"><i class="fas fa-search-dollar"></i></div>
+          <div>
+            <h3>Market Opportunity Checker</h3>
+            <p>Score a market opportunity out of 100</p>
+          </div>
+        </div>
+        <div class="tool-input-group">
+          <label for="mk-size">Total Addressable Market (₹)</label>
+          <input class="tool-input" id="mk-size" type="number" placeholder="e.g. 5000000000" min="0" />
+        </div>
+        <div class="tool-input-group">
+          <label for="mk-growth">Market Growth Rate (% YoY)</label>
+          <input class="tool-input" id="mk-growth" type="number" placeholder="e.g. 18" min="0" />
+        </div>
+        <div class="tool-input-group">
+          <label for="mk-comp">Number of Direct Competitors</label>
+          <input class="tool-input" id="mk-comp" type="number" placeholder="e.g. 5" min="0" />
+        </div>
+        <button class="btn btn-primary w-full" id="calc-market" style="justify-content:center">
+          <i class="fas fa-calculator"></i> Analyze Opportunity
+        </button>
+        <div class="tool-result" id="market-result">
+          <span style="color:var(--color-text-muted);font-size:.88rem">Enter market data to analyze</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align:center;margin-top:64px" class="animate-on-scroll">
+      <p class="text-muted" style="margin-bottom:20px">Want deeper analysis and personalized recommendations?</p>
+      <a href="pricing.html" class="btn btn-primary btn-lg"><i class="fas fa-star"></i> Upgrade to Pro — Unlock All Tools</a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-icon"><i class="fas fa-bolt"></i></div>OneRule Venture</div>
+        <p>Empowering India's entrepreneurs with intelligence, tools, and guidance.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="startup-resources.html">Startup Resources</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 OneRule Venture. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a><a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

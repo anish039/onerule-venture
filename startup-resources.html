@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<!-- OneRule Venture — startup-resources.html -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Startup resources for budding entrepreneurs – roadmap, registration guide, funding opportunities, checklist, and downloadable resources." />
+  <title>Startup Resources – OneRule Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Checklist */
+    .checklist { display: flex; flex-direction: column; gap: 12px; }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition);
+      user-select: none;
+    }
+    .check-item:hover { border-color: var(--color-accent); }
+    .check-item.done { background: rgba(16,185,129,.06); border-color: rgba(16,185,129,.3); }
+    .check-item.done .check-box { background: var(--color-success); border-color: var(--color-success); }
+    .check-item.done .check-box i { display: block; }
+    .check-item.done .check-text { text-decoration: line-through; color: var(--color-text-muted); }
+    .check-box {
+      width: 22px; height: 22px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      border: 2px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+    .check-box i { display: none; color: #fff; font-size: .7rem; }
+    .check-text { font-size: .88rem; font-weight: 500; color: var(--color-text); }
+
+    /* Scheme cards */
+    .scheme-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      transition: all var(--transition);
+    }
+    .scheme-card:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .scheme-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .scheme-card h4 { font-size: .95rem; margin-bottom: 8px; }
+    .scheme-card p  { font-size: .84rem; line-height: 1.65; margin-bottom: 16px; }
+    .scheme-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: .78rem;
+      color: var(--color-text-muted);
+    }
+    .scheme-meta span { display: flex; align-items: center; gap: 5px; }
+
+    /* Download cards */
+    .download-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+    .download-card:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+      transform: translateX(4px);
+    }
+    .download-icon {
+      width: 48px; height: 48px;
+      flex-shrink: 0;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .download-info { flex: 1; }
+    .download-info h4 { font-size: .9rem; margin-bottom: 4px; }
+    .download-info p  { font-size: .78rem; }
+    .download-size {
+      font-size: .75rem;
+      color: var(--color-text-light);
+      flex-shrink: 0;
+    }
+    .download-btn {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      background: var(--color-accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent);
+      font-size: .85rem;
+      transition: all var(--transition);
+      flex-shrink: 0;
+    }
+    .download-card:hover .download-btn { background: var(--color-accent); color: #fff; }
+
+    /* Progress tracker */
+    .progress-bar-wrap {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+    .progress-bar-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: var(--color-border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+      border-radius: 100px;
+      transition: width .5s ease;
+      width: 0%;
+    }
+    .progress-label {
+      font-family: var(--font-display);
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="loading-screen" class="loading-screen"><div class="loading-logo"><div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>OneRule Venture</div><div class="loading-bar-wrap"><div class="loading-bar"></div></div></div>
+
+<header class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>OneRule Venture</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a><a href="services.html">Services</a><a href="tools.html">Tools</a>
+      <a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+      <a href="dashboard.html" class="btn btn-outline btn-sm">Login</a>
+      <a href="dashboard.html" class="nav-profile"><i class="fas fa-user"></i></a>
+    </div>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="tools.html">Tools</a>
+  <a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a>
+</nav>
+
+<main>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label"><i class="fas fa-seedling"></i> For Budding Entrepreneurs</div>
+    <h1>Your Complete Startup<br>Launchpad</h1>
+    <p>Everything a first-time founder needs — roadmap, registration, funding, and resources — in one place, built for India.</p>
+    <div class="d-flex gap-12 flex-wrap" style="justify-content:center;margin-top:32px">
+      <a href="#roadmap" class="btn btn-primary btn-lg"><i class="fas fa-map"></i> View Roadmap</a>
+      <a href="#checklist" class="btn btn-outline btn-lg">Startup Checklist</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── STARTUP ROADMAP ── -->
+<section class="section" id="roadmap">
+  <div class="container">
+    <div class="why-grid">
+      <div class="animate-on-scroll">
+        <div class="section-label"><i class="fas fa-map-signs"></i> Step by Step</div>
+        <h2>Your Startup Roadmap</h2>
+        <p style="margin-top:14px;line-height:1.75">From first idea to first rupee of revenue — here's a proven path that India's most successful startups have followed. Each step comes with resources and guidance.</p>
+        <a href="#checklist" class="btn btn-primary mt-32"><i class="fas fa-tasks"></i> Use the Checklist</a>
+      </div>
+      <div class="animate-on-scroll stagger-1">
+        <div class="roadmap">
+          <div class="roadmap-step">
+            <div class="roadmap-num">1</div>
+            <div class="roadmap-content">
+              <h4>Validate Your Idea</h4>
+              <p>Run customer discovery interviews, validate the problem, and assess market size using our Market Opportunity Checker tool before spending a rupee.</p>
+            </div>
+          </div>
+          <div class="roadmap-step">
+            <div class="roadmap-num">2</div>
+            <div class="roadmap-content">
+              <h4>Register Your Business</h4>
+              <p>Choose the right legal structure (Pvt. Ltd., LLP, or Sole Proprietorship). File for incorporation via the MCA portal and apply for DPIIT Startup India recognition.</p>
+            </div>
+          </div>
+          <div class="roadmap-step">
+            <div class="roadmap-num">3</div>
+            <div class="roadmap-content">
+              <h4>Build Your MVP</h4>
+              <p>Keep it lean. Focus on the one problem that matters most to your early adopters. Use the Startup Cost Estimator to plan your 6-month runway carefully.</p>
+            </div>
+          </div>
+          <div class="roadmap-step">
+            <div class="roadmap-num">4</div>
+            <div class="roadmap-content">
+              <h4>Get Your First 10 Customers</h4>
+              <p>Sales before marketing. Cold outreach, referrals, and founder-led sales. Charge from Day 1 to validate willingness to pay — even a token amount matters.</p>
+            </div>
+          </div>
+          <div class="roadmap-step">
+            <div class="roadmap-num">5</div>
+            <div class="roadmap-content">
+              <h4>Apply for Funding & Schemes</h4>
+              <p>Use our Government Schemes database to find grants you qualify for. Build your investor pipeline and prepare a data-backed pitch deck for angel rounds.</p>
+            </div>
+          </div>
+          <div class="roadmap-step">
+            <div class="roadmap-num">6</div>
+            <div class="roadmap-content">
+              <h4>Scale with Systems</h4>
+              <p>Document every process. Build the team, the tech, and the metrics dashboard. Use your Business Health Score to monitor growth systematically each month.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BUSINESS REGISTRATION STEPS ── -->
+<section class="section" style="background:var(--color-surface)">
+  <div class="container">
+    <div class="section-header centered animate-on-scroll" style="margin-bottom:48px">
+      <div class="section-label"><i class="fas fa-file-contract"></i> Legal Setup</div>
+      <h2>Register Your Business in India</h2>
+      <p>A simplified guide to getting your startup legally incorporated and compliant from Day 1.</p>
+    </div>
+    <div class="cards-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+
+      <div class="feature-card animate-on-scroll">
+        <div class="feature-icon icon-blue"><i class="fas fa-balance-scale"></i></div>
+        <h3>Choose Legal Structure</h3>
+        <p style="margin-bottom:16px">Private Limited Company is recommended for VC-backed startups. LLP works for service businesses. Sole Proprietorship for early-stage solopreneurs.</p>
+        <div style="font-size:.78rem;color:var(--color-text-muted);background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:10px 14px">
+          ⏱ Time: 1–2 days to decide &nbsp;|&nbsp; Cost: Free
+        </div>
+      </div>
+
+      <div class="feature-card animate-on-scroll stagger-1">
+        <div class="feature-icon icon-teal"><i class="fas fa-id-card"></i></div>
+        <h3>MCA Incorporation</h3>
+        <p style="margin-bottom:16px">File SPICe+ form on the MCA21 portal for Pvt. Ltd. registration. Get Certificate of Incorporation, PAN, TAN, and GSTIN in a single application.</p>
+        <div style="font-size:.78rem;color:var(--color-text-muted);background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:10px 14px">
+          ⏱ Time: 7–14 days &nbsp;|&nbsp; Cost: ₹5,000–15,000
+        </div>
+      </div>
+
+      <div class="feature-card animate-on-scroll stagger-2">
+        <div class="feature-icon icon-green"><i class="fas fa-star"></i></div>
+        <h3>DPIIT Recognition</h3>
+        <p style="margin-bottom:16px">Register on the Startup India portal for DPIIT recognition. Unlocks tax benefits (3-year exemption), easier compliance, and access to 100+ government schemes.</p>
+        <div style="font-size:.78rem;color:var(--color-text-muted);background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:10px 14px">
+          ⏱ Time: 2–7 days &nbsp;|&nbsp; Cost: Free
+        </div>
+      </div>
+
+      <div class="feature-card animate-on-scroll stagger-3">
+        <div class="feature-icon icon-amber"><i class="fas fa-receipt"></i></div>
+        <h3>GST Registration</h3>
+        <p style="margin-bottom:16px">Mandatory if annual turnover exceeds ₹20 lakh (₹10 lakh in special states). Register on the GST portal and file returns monthly or quarterly.</p>
+        <div style="font-size:.78rem;color:var(--color-text-muted);background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:10px 14px">
+          ⏱ Time: 3–7 days &nbsp;|&nbsp; Cost: Free
+        </div>
+      </div>
+
+      <div class="feature-card animate-on-scroll">
+        <div class="feature-icon icon-purple"><i class="fas fa-shield-alt"></i></div>
+        <h3>IP Protection</h3>
+        <p style="margin-bottom:16px">File trademark application (₹4,500–9,000) on IP India portal to protect your brand name. Consider patents for technical inventions. Copyright is automatic for software.</p>
+        <div style="font-size:.78rem;color:var(--color-text-muted);background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:10px 14px">
+          ⏱ Time: 18–24 months &nbsp;|&nbsp; Start early
+        </div>
+      </div>
+
+      <div class="feature-card animate-on-scroll stagger-1">
+        <div class="feature-icon icon-red"><i class="fas fa-university"></i></div>
+        <h3>Open Business Bank Account</h3>
+        <p style="margin-bottom:16px">Open a current account with ICICI, HDFC, or RazorpayX using your incorporation documents. Maintain separate finances from Day 1 — it's non-negotiable.</p>
+        <div style="font-size:.78rem;color:var(--color-text-muted);background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:10px 14px">
+          ⏱ Time: 1–3 days &nbsp;|&nbsp; Free to open
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FUNDING OPPORTUNITIES ── -->
+<section class="section" id="funding">
+  <div class="container">
+    <div class="section-header centered animate-on-scroll" style="margin-bottom:48px">
+      <div class="section-label"><i class="fas fa-money-bill-wave"></i> Funding</div>
+      <h2>Funding Opportunities for Indian Startups</h2>
+      <p>From government grants to angel networks — here's where the money is for early-stage startups.</p>
+    </div>
+    <div class="cards-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+
+      <div class="scheme-card animate-on-scroll">
+        <span class="scheme-tag tag-policy">Government Grant</span>
+        <h4>Startup India Seed Fund Scheme (SISFS)</h4>
+        <p>Provides up to ₹20 lakh for proof of concept and ₹50 lakh for prototype development to DPIIT-recognised startups via selected incubators.</p>
+        <div class="scheme-meta">
+          <span><i class="fas fa-rupee-sign"></i> Up to ₹50 Lakh</span>
+          <span><i class="fas fa-clock"></i> Rolling basis</span>
+        </div>
+        <a href="#" class="btn btn-outline btn-sm" style="margin-top:16px">Apply Now <i class="fas fa-external-link-alt"></i></a>
+      </div>
+
+      <div class="scheme-card animate-on-scroll stagger-1">
+        <span class="scheme-tag tag-funding">MSME Scheme</span>
+        <h4>SIDBI Make in India Soft Loan Fund (SMILE)</h4>
+        <p>Soft loans of ₹10 lakh to ₹25 crore for MSMEs in manufacturing and services. Interest rates significantly below market rates with flexible repayment.</p>
+        <div class="scheme-meta">
+          <span><i class="fas fa-rupee-sign"></i> ₹10L – ₹25Cr</span>
+          <span><i class="fas fa-percent"></i> 8–9% p.a.</span>
+        </div>
+        <a href="#" class="btn btn-outline btn-sm" style="margin-top:16px">Learn More <i class="fas fa-external-link-alt"></i></a>
+      </div>
+
+      <div class="scheme-card animate-on-scroll stagger-2">
+        <span class="scheme-tag tag-market">Angel Network</span>
+        <h4>Indian Angel Network (IAN)</h4>
+        <p>India's largest angel investor network with 500+ angels. Invests ₹50 lakh – ₹10 crore in early-stage startups across tech, consumer, healthcare, and B2B sectors.</p>
+        <div class="scheme-meta">
+          <span><i class="fas fa-rupee-sign"></i> ₹50L – ₹10Cr</span>
+          <span><i class="fas fa-users"></i> 500+ Angels</span>
+        </div>
+        <a href="#" class="btn btn-outline btn-sm" style="margin-top:16px">Pitch Now <i class="fas fa-external-link-alt"></i></a>
+      </div>
+
+      <div class="scheme-card animate-on-scroll">
+        <span class="scheme-tag tag-policy">State Scheme</span>
+        <h4>Mudra Loan – Tarun Category</h4>
+        <p>Pradhan Mantri Mudra Yojana offers collateral-free loans up to ₹10 lakh for small businesses under the Tarun (₹5L–₹10L) and Shishu / Kishore categories.</p>
+        <div class="scheme-meta">
+          <span><i class="fas fa-rupee-sign"></i> Up to ₹10 Lakh</span>
+          <span><i class="fas fa-check"></i> Collateral-free</span>
+        </div>
+        <a href="#" class="btn btn-outline btn-sm" style="margin-top:16px">Apply at Bank <i class="fas fa-external-link-alt"></i></a>
+      </div>
+
+      <div class="scheme-card animate-on-scroll stagger-1">
+        <span class="scheme-tag tag-startup">VC Fund</span>
+        <h4>100x.VC — India's Largest Pre-Seed Fund</h4>
+        <p>Invests ₹25 lakh – ₹1 crore in 100 Indian startups each year at pre-seed. One of the most accessible early-stage institutional investors in India.</p>
+        <div class="scheme-meta">
+          <span><i class="fas fa-rupee-sign"></i> ₹25L – ₹1Cr</span>
+          <span><i class="fas fa-calendar"></i> Annual cohort</span>
+        </div>
+        <a href="#" class="btn btn-outline btn-sm" style="margin-top:16px">Apply for Cohort <i class="fas fa-external-link-alt"></i></a>
+      </div>
+
+      <div class="scheme-card animate-on-scroll stagger-2">
+        <span class="scheme-tag tag-industry">Accelerator</span>
+        <h4>Y Combinator (India Startups)</h4>
+        <p>YC invests $500K for 7% equity in top global startups — and actively accepts Indian founders. Demo Day connects you to the world's most active startup investor network.</p>
+        <div class="scheme-meta">
+          <span><i class="fas fa-dollar-sign"></i> $500K</span>
+          <span><i class="fas fa-globe"></i> Global network</span>
+        </div>
+        <a href="#" class="btn btn-outline btn-sm" style="margin-top:16px">Apply to YC <i class="fas fa-external-link-alt"></i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── STARTUP CHECKLIST ── -->
+<section class="section" style="background:var(--color-surface)" id="checklist">
+  <div class="container">
+    <div class="why-grid">
+      <div class="animate-on-scroll">
+        <div class="section-label"><i class="fas fa-tasks"></i> Interactive Checklist</div>
+        <h2>Startup Launch Checklist</h2>
+        <p style="margin-top:14px;line-height:1.75">Track your startup progress interactively. Click each item to mark it complete. Your progress is saved in your browser.</p>
+        <div class="progress-bar-wrap mt-32">
+          <p style="font-size:.82rem;font-weight:600;color:var(--color-text-muted);margin-bottom:12px">Your Launch Progress</p>
+          <div class="progress-bar-inner">
+            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+            <span class="progress-label" id="progress-label">0%</span>
+          </div>
+        </div>
+        <button class="btn btn-outline btn-sm" id="reset-checklist" style="margin-top:8px"><i class="fas fa-redo"></i> Reset Progress</button>
+      </div>
+
+      <div class="animate-on-scroll stagger-1">
+        <div class="checklist" id="startup-checklist">
+          <div class="check-item" data-id="1">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Define the core problem your startup solves</span>
+          </div>
+          <div class="check-item" data-id="2">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Conduct 10+ customer discovery interviews</span>
+          </div>
+          <div class="check-item" data-id="3">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Validate TAM/SAM/SOM with Market Opportunity Checker</span>
+          </div>
+          <div class="check-item" data-id="4">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Register company on MCA (SPICe+ form)</span>
+          </div>
+          <div class="check-item" data-id="5">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Apply for DPIIT Startup India recognition</span>
+          </div>
+          <div class="check-item" data-id="6">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Open a dedicated business current account</span>
+          </div>
+          <div class="check-item" data-id="7">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Register for GST (if applicable)</span>
+          </div>
+          <div class="check-item" data-id="8">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">File trademark for brand name and logo</span>
+          </div>
+          <div class="check-item" data-id="9">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Build and launch MVP with core feature only</span>
+          </div>
+          <div class="check-item" data-id="10">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Close first 10 paying customers</span>
+          </div>
+          <div class="check-item" data-id="11">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Set up basic accounting with Zoho Books / Tally</span>
+          </div>
+          <div class="check-item" data-id="12">
+            <div class="check-box"><i class="fas fa-check"></i></div>
+            <span class="check-text">Apply for eligible government grants and MSME schemes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DOWNLOADABLE RESOURCES ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header centered animate-on-scroll" style="margin-bottom:48px">
+      <div class="section-label"><i class="fas fa-download"></i> Free Downloads</div>
+      <h2>Downloadable Resources</h2>
+      <p>Free templates, guides, and frameworks — crafted specifically for Indian entrepreneurs. No sign-up required.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px" class="animate-on-scroll">
+
+      <div class="download-card">
+        <div class="download-icon icon-blue"><i class="fas fa-file-powerpoint"></i></div>
+        <div class="download-info">
+          <h4>Investor Pitch Deck Template</h4>
+          <p>12-slide deck structure used by funded Indian startups</p>
+        </div>
+        <span class="download-size">2.4 MB</span>
+        <div class="download-btn"><i class="fas fa-download"></i></div>
+      </div>
+
+      <div class="download-card">
+        <div class="download-icon icon-green"><i class="fas fa-file-excel"></i></div>
+        <div class="download-info">
+          <h4>Financial Model Template (3-Year)</h4>
+          <p>P&L, balance sheet, and cash flow projections model</p>
+        </div>
+        <span class="download-size">1.8 MB</span>
+        <div class="download-btn"><i class="fas fa-download"></i></div>
+      </div>
+
+      <div class="download-card">
+        <div class="download-icon icon-amber"><i class="fas fa-file-pdf"></i></div>
+        <div class="download-info">
+          <h4>India Startup Registration Guide 2025</h4>
+          <p>Step-by-step guide to MCA, DPIIT, GST registration</p>
+        </div>
+        <span class="download-size">890 KB</span>
+        <div class="download-btn"><i class="fas fa-download"></i></div>
+      </div>
+
+      <div class="download-card">
+        <div class="download-icon icon-teal"><i class="fas fa-file-word"></i></div>
+        <div class="download-info">
+          <h4>Founders' Agreement Template</h4>
+          <p>Legal template for co-founder equity and IP assignment</p>
+        </div>
+        <span class="download-size">340 KB</span>
+        <div class="download-btn"><i class="fas fa-download"></i></div>
+      </div>
+
+      <div class="download-card">
+        <div class="download-icon icon-purple"><i class="fas fa-file-pdf"></i></div>
+        <div class="download-info">
+          <h4>Government Schemes Handbook 2025</h4>
+          <p>50+ MSME & startup schemes with eligibility criteria</p>
+        </div>
+        <span class="download-size">1.2 MB</span>
+        <div class="download-btn"><i class="fas fa-download"></i></div>
+      </div>
+
+      <div class="download-card">
+        <div class="download-icon icon-red"><i class="fas fa-file-excel"></i></div>
+        <div class="download-info">
+          <h4>Unit Economics Calculator</h4>
+          <p>CAC, LTV, payback period, and cohort analysis spreadsheet</p>
+        </div>
+        <span class="download-size">980 KB</span>
+        <div class="download-btn"><i class="fas fa-download"></i></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm">
+  <div class="container">
+    <div class="newsletter-section animate-on-scroll">
+      <div class="newsletter-inner">
+        <div>
+          <div class="section-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)"><i class="fas fa-rocket"></i> Ready to Launch?</div>
+          <h2>Get Personalised Startup Guidance</h2>
+          <p>Join 12,000+ entrepreneurs who've used OneRule Venture to build, validate, and grow their businesses.</p>
+        </div>
+        <div>
+          <a href="pricing.html" class="btn btn-lg" style="background:#fff;color:var(--color-primary);font-weight:700;display:inline-flex;align-items:center;gap:10px;margin-bottom:14px">
+            <i class="fas fa-bolt"></i> Start Free for 14 Days
+          </a>
+          <p style="color:rgba(255,255,255,.4);font-size:.78rem">No credit card. No commitment. Full platform access.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-icon"><i class="fas fa-bolt"></i></div>OneRule Venture</div>
+        <p>Empowering India's entrepreneurs with intelligence, tools, and guidance.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><ul>
+        <li><a href="dashboard.html">Dashboard</a></li><li><a href="tools.html">Tools</a></li>
+        <li><a href="startup-resources.html">Startup Resources</a></li><li><a href="pricing.html">Pricing</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Blog</a></li><li><a href="#">Careers</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul>
+        <li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 OneRule Venture. All rights reserved. Made with ❤️ in India.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // ── Interactive Checklist ──
+  const STORAGE_KEY = 'orv-checklist';
+
+  function loadChecklist() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+  }
+
+  function saveChecklist(done) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(done)); } catch {}
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.check-item');
+    const done  = document.querySelectorAll('.check-item.done');
+    const pct   = items.length ? Math.round(done.length / items.length * 100) : 0;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-label').textContent = pct + '%';
+  }
+
+  // Init state from localStorage
+  const doneIds = loadChecklist();
+  document.querySelectorAll('.check-item').forEach(item => {
+    if (doneIds.includes(item.dataset.id)) item.classList.add('done');
+    item.addEventListener('click', () => {
+      item.classList.toggle('done');
+      const current = Array.from(document.querySelectorAll('.check-item.done')).map(i => i.dataset.id);
+      saveChecklist(current);
+      updateProgress();
+    });
+  });
+  updateProgress();
+
+  document.getElementById('reset-checklist')?.addEventListener('click', () => {
+    document.querySelectorAll('.check-item').forEach(i => i.classList.remove('done'));
+    saveChecklist([]);
+    updateProgress();
+  });
+
+  // Download cards — show toast on click
+  document.querySelectorAll('.download-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const name = card.querySelector('h4')?.textContent || 'Resource';
+      // Reuse showToast from script.js (available globally after load)
+      const toast = document.createElement('div');
+      toast.textContent = `⬇️ "${name}" download started!`;
+      Object.assign(toast.style, {
+        position:'fixed', bottom:'28px', right:'24px',
+        background:'var(--color-success)', color:'#fff',
+        padding:'14px 22px', borderRadius:'12px',
+        fontFamily:'var(--font-body)', fontSize:'.9rem', fontWeight:'500',
+        boxShadow:'var(--shadow-lg)', zIndex:'9999',
+        animation:'fadeInUp .4s both'
+      });
+      document.body.appendChild(toast);
+      setTimeout(() => { toast.style.opacity='0'; toast.style.transition='opacity .4s'; setTimeout(() => toast.remove(), 400); }, 3000);
+    });
+  });
+</script>
+</body>
+</html>

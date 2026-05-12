@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<!-- OneRule Venture — pricing.html -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Transparent pricing plans for OneRule Venture – Starter, Growth, and Enterprise. Start free, scale as you grow." />
+  <title>Pricing – OneRule Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 56px;
+    }
+    .toggle-label {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      transition: color var(--transition);
+    }
+    .toggle-label.active { color: var(--color-text); }
+    .toggle-switch {
+      position: relative;
+      width: 52px;
+      height: 28px;
+    }
+    .toggle-switch input { display: none; }
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--color-border);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      top: 4px; left: 4px;
+      transition: transform var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+    .toggle-switch input:checked + .toggle-slider { background: var(--color-accent); }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(24px); }
+    .save-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      background: rgba(16,185,129,.12);
+      color: var(--color-success);
+      font-size: .72rem;
+      font-weight: 700;
+      border-radius: 100px;
+      letter-spacing: .04em;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+      padding: 24px 0;
+    }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--color-text);
+      gap: 16px;
+    }
+    .faq-question i {
+      color: var(--color-accent);
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+    .faq-answer {
+      display: none;
+      padding-top: 14px;
+      font-size: .88rem;
+      line-height: 1.75;
+      color: var(--color-text-muted);
+    }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-question i { transform: rotate(45deg); }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+    }
+    .compare-table th, .compare-table td {
+      padding: 14px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .compare-table th:first-child, .compare-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+    .compare-table th {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--color-text);
+      background: var(--color-surface);
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .compare-table th.highlight { background: var(--color-accent-glow); color: var(--color-accent); }
+    .compare-table td { color: var(--color-text-muted); }
+    .compare-table tr:hover td { background: var(--color-surface); }
+    .check-yes { color: var(--color-success); font-size: 1rem; }
+    .check-no  { color: var(--color-border); font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+<div id="loading-screen" class="loading-screen"><div class="loading-logo"><div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>OneRule Venture</div><div class="loading-bar-wrap"><div class="loading-bar"></div></div></div>
+
+<header class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>OneRule Venture</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a><a href="services.html">Services</a><a href="tools.html">Tools</a>
+      <a href="about.html">About</a><a href="pricing.html" class="active">Pricing</a><a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+      <a href="dashboard.html" class="btn btn-outline btn-sm">Login</a>
+      <a href="dashboard.html" class="nav-profile"><i class="fas fa-user"></i></a>
+    </div>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="tools.html">Tools</a>
+  <a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a>
+</nav>
+
+<main>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label"><i class="fas fa-tags"></i> Simple Pricing</div>
+    <h1>Invest in Your Business Growth</h1>
+    <p>No hidden fees, no surprises. Cancel anytime. Every plan comes with a 14-day free trial.</p>
+  </div>
+</section>
+
+<!-- Pricing Toggle -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+
+    <!-- Billing Toggle -->
+    <div class="toggle-wrap animate-on-scroll">
+      <span class="toggle-label active" id="toggle-monthly">Monthly</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="pricing-toggle" />
+        <span class="toggle-slider"></span>
+      </label>
+      <span class="toggle-label" id="toggle-annual">Annual <span class="save-badge">Save 20%</span></span>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="pricing-card animate-on-scroll" data-plan="starter">
+        <div class="pricing-badge badge-popular">Starter</div>
+        <div class="pricing-name">For Solo Entrepreneurs</div>
+        <div class="pricing-price">
+          <span class="price-amount">₹999</span>
+          <span class="price-period">/ month</span>
+        </div>
+        <p class="pricing-desc">Everything you need to get clarity on your business and start making data-driven decisions.</p>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Business Health Score (monthly)</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Access to 4 core tools</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Daily industry updates feed</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> 10 industry reports / month</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Government schemes database</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Email support</li>
+        </ul>
+        <a href="dashboard.html" class="btn btn-outline w-full" style="justify-content:center">Start Free Trial</a>
+      </div>
+
+      <!-- Growth (Featured) -->
+      <div class="pricing-card featured animate-on-scroll stagger-1" data-plan="growth">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-name">For Growing Businesses</div>
+        <div class="pricing-price">
+          <span class="price-amount">₹2,999</span>
+          <span class="price-period">/ month</span>
+        </div>
+        <p class="pricing-desc">Deep intelligence, AI insights, and expert access for entrepreneurs serious about scaling.</p>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Everything in Starter</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Weekly Business Health Reports</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Unlimited industry reports</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> AI-powered weekly insights brief</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> 2 mentor sessions / month</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Competitor monitoring (3 brands)</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Funding scheme alerts</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Priority support (chat + email)</li>
+        </ul>
+        <a href="dashboard.html" class="btn btn-primary w-full" style="justify-content:center">Start Free Trial</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card animate-on-scroll stagger-2" data-plan="enterprise">
+        <div class="pricing-badge badge-popular">Enterprise</div>
+        <div class="pricing-name">For Scaling Enterprises</div>
+        <div class="pricing-price">
+          <span class="price-amount">₹7,999</span>
+          <span class="price-period">/ month</span>
+        </div>
+        <p class="pricing-desc">Full-stack intelligence platform with dedicated support, custom research, and team access.</p>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Everything in Growth</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Daily Business Health Dashboard</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Custom research reports (2/month)</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Unlimited mentor sessions</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Dedicated account manager</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> Team access (up to 10 seats)</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> API data access</li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i> White-glove onboarding</li>
+        </ul>
+        <a href="contact.html" class="btn btn-dark w-full" style="justify-content:center">Contact Sales</a>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:32px;font-size:.86rem;color:var(--color-text-muted)">
+      All plans include a <strong>14-day free trial</strong>. No credit card required. GST applicable.
+    </p>
+
+  </div>
+</section>
+
+<!-- Feature Comparison Table -->
+<section class="section" style="background:var(--color-surface);padding-top:48px">
+  <div class="container">
+    <div class="section-header centered animate-on-scroll" style="margin-bottom:40px">
+      <h2>Full Feature Comparison</h2>
+    </div>
+    <div style="overflow-x:auto" class="animate-on-scroll">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="width:38%">Feature</th>
+            <th>Starter</th>
+            <th class="highlight">Growth</th>
+            <th>Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Business Health Score</strong></td><td>Monthly</td><td>Weekly</td><td>Daily</td></tr>
+          <tr><td>Industry Reports Access</td><td>10 / month</td><td>Unlimited</td><td>Unlimited + Custom</td></tr>
+          <tr><td>AI Business Insights</td><td><i class="fas fa-times check-no"></i></td><td>Weekly Brief</td><td>Daily Brief</td></tr>
+          <tr><td>Government Schemes DB</td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-check check-yes"></i></td></tr>
+          <tr><td>Mentor Sessions</td><td><i class="fas fa-times check-no"></i></td><td>2 / month</td><td>Unlimited</td></tr>
+          <tr><td>Competitor Monitoring</td><td><i class="fas fa-times check-no"></i></td><td>3 Brands</td><td>Unlimited</td></tr>
+          <tr><td>Funding Opportunity Alerts</td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-check check-yes"></i></td></tr>
+          <tr><td>Team Seats</td><td>1</td><td>3</td><td>Up to 10</td></tr>
+          <tr><td>API Access</td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-check check-yes"></i></td></tr>
+          <tr><td>Custom Research Reports</td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td><td>2 / month</td></tr>
+          <tr><td>Dedicated Account Manager</td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-check check-yes"></i></td></tr>
+          <tr><td>Support</td><td>Email</td><td>Chat + Email</td><td>Phone + Chat + Email</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container" style="max-width:720px">
+    <div class="section-header centered animate-on-scroll" style="margin-bottom:48px">
+      <div class="section-label"><i class="fas fa-question-circle"></i> FAQ</div>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="animate-on-scroll">
+
+      <div class="faq-item">
+        <div class="faq-question">Can I switch plans anytime? <i class="fas fa-plus"></i></div>
+        <div class="faq-answer">Yes, absolutely. You can upgrade or downgrade your plan at any time. Upgrades take effect immediately; downgrades take effect at the next billing cycle.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Is there a free trial? <i class="fas fa-plus"></i></div>
+        <div class="faq-answer">Every plan comes with a 14-day free trial — no credit card required. You'll have full access to all features in your chosen plan during the trial period.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What payment methods do you accept? <i class="fas fa-plus"></i></div>
+        <div class="faq-answer">We accept all major credit/debit cards, UPI, net banking, and NEFT/RTGS for enterprise customers. All payments are secured by Razorpay.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Can I get a custom plan for my team? <i class="fas fa-plus"></i></div>
+        <div class="faq-answer">Yes! Our Enterprise plan is customizable. If you need more seats, custom research frequency, or white-label options, contact our sales team and we'll design a package for you.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Is there a refund policy? <i class="fas fa-plus"></i></div>
+        <div class="faq-answer">We offer a 7-day money-back guarantee on all paid plans if you're not satisfied. Simply contact support within 7 days of your first payment and we'll process a full refund, no questions asked.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Do prices include GST? <i class="fas fa-plus"></i></div>
+        <div class="faq-answer">All listed prices are exclusive of GST. 18% GST will be applied at checkout. GST invoices are issued for all transactions and can be used for input tax credit.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Bottom CTA -->
+<section class="section-sm">
+  <div class="container">
+    <div class="newsletter-section animate-on-scroll">
+      <div class="newsletter-inner">
+        <div>
+          <div class="section-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)"><i class="fas fa-building"></i> Enterprise</div>
+          <h2>Need a Custom Enterprise Solution?</h2>
+          <p>Large team? Custom data needs? White-label platform? Let's build something together.</p>
+        </div>
+        <div>
+          <a href="contact.html" class="btn btn-lg" style="background:#fff;color:var(--color-primary);font-weight:700;display:inline-flex;align-items:center;gap:10px;margin-bottom:14px">
+            <i class="fas fa-envelope"></i> Talk to Sales
+          </a>
+          <p style="color:rgba(255,255,255,.4);font-size:.78rem">We typically respond within 2 business hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-icon"><i class="fas fa-bolt"></i></div>OneRule Venture</div>
+        <p>Empowering India's entrepreneurs with intelligence, tools, and guidance.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><ul>
+        <li><a href="dashboard.html">Dashboard</a></li><li><a href="tools.html">Tools</a></li>
+        <li><a href="startup-resources.html">Startup Resources</a></li><li><a href="pricing.html">Pricing</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul>
+        <li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 OneRule Venture. All rights reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+  // Pricing toggle label highlight
+  const toggle = document.getElementById('pricing-toggle');
+  if (toggle) {
+    toggle.addEventListener('change', function() {
+      document.getElementById('toggle-monthly').classList.toggle('active', !this.checked);
+      document.getElementById('toggle-annual').classList.toggle('active', this.checked);
+    });
+  }
+</script>
+</body>
+</html>

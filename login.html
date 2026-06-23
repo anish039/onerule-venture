@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- OneRule Venture — auth/login.html -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In – OneRule Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+
+<button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+  <i class="fas fa-moon"></i>
+</button>
+
+<div class="auth-card">
+  <!-- Brand -->
+  <a href="../index.html" class="auth-brand">
+    <div class="auth-logo-icon"><i class="fas fa-bolt"></i></div>
+    <span class="auth-brand-name">OneRule Venture</span>
+  </a>
+
+  <h1 class="auth-title">Welcome back</h1>
+  <p class="auth-sub">Log in to your account to continue.</p>
+
+  <!-- Alert -->
+  <div class="auth-alert" id="alert" role="alert"></div>
+
+  <!-- Form -->
+  <form id="login-form" novalidate>
+
+    <div class="form-group">
+      <label class="form-label" for="email">Email address</label>
+      <input class="form-input" id="email" name="email" type="email"
+        autocomplete="email" placeholder="you@example.com" required />
+      <div class="field-error" data-error="email"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="password">Password</label>
+      <div class="input-wrap">
+        <input class="form-input" id="password" name="password" type="password"
+          autocomplete="current-password" placeholder="Your password" required />
+        <button type="button" class="toggle-pw" aria-label="Show password" onclick="togglePasswordVisibility('password', this)">
+          <i class="fas fa-eye"></i>
+        </button>
+      </div>
+      <div class="field-error" data-error="password"></div>
+    </div>
+
+    <div class="forgot-wrap">
+      <a href="forgot-password.html" class="auth-link" style="font-size:.82rem">Forgot password?</a>
+    </div>
+
+    <div class="checkbox-wrap">
+      <input type="checkbox" id="remember_me" name="remember_me" />
+      <label class="checkbox-label" for="remember_me">Keep me signed in for 30 days</label>
+    </div>
+
+    <button type="submit" class="btn-auth" id="submit-btn">
+      <div class="spinner"></div>
+      <span class="btn-label">Log in</span>
+    </button>
+
+  </form>
+
+  <div class="auth-footer">
+    Don't have an account? <a href="register.html" class="auth-link">Sign up free</a>
+  </div>
+  <div class="auth-footer" style="margin-top:8px">
+    <a href="../index.html" class="auth-link" style="color:var(--muted);font-weight:400;font-size:.82rem">
+      ← Back to home
+    </a>
+  </div>
+</div>
+
+<script src="auth-api.js"></script>
+<script>
+  initTheme();
+
+  // Show URL messages (e.g. ?verified=true from email link)
+  const params = new URLSearchParams(window.location.search);
+  const alert  = document.getElementById('alert');
+  if (params.get('verified') === 'true') {
+    alert.textContent = '✅ Email verified! You can now log in.';
+    alert.className   = 'auth-alert info show';
+  } else if (params.get('verified') === 'already') {
+    alert.textContent = 'Your email was already verified.';
+    alert.className   = 'auth-alert info show';
+  } else if (params.get('msg')) {
+    alert.textContent = decodeURIComponent(params.get('msg'));
+    alert.className   = 'auth-alert info show';
+  }
+
+  // If already logged in, redirect
+  redirectIfLoggedIn();
+
+  function togglePasswordVisibility(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon  = btn.querySelector('i');
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.className = 'fas fa-eye-slash';
+      btn.setAttribute('aria-label', 'Hide password');
+    } else {
+      input.type = 'password';
+      icon.className = 'fas fa-eye';
+      btn.setAttribute('aria-label', 'Show password');
+    }
+  }
+
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearFieldErrors();
+
+    const btn    = document.getElementById('submit-btn');
+    const form   = e.target;
+    const email    = form.email.value.trim();
+    const password = form.password.value;
+    const remember = form.remember_me.checked;
+
+    // Basic client-side validation
+    if (!email) { showFieldErrors({ email: 'Email is required.' }); return; }
+    if (!password) { showFieldErrors({ password: 'Password is required.' }); return; }
+
+    btn.disabled = true;
+    btn.classList.add('loading');
+    alert.className = 'auth-alert';
+
+    const res = await AuthAPI.login(email, password, remember);
+
+    btn.disabled = false;
+    btn.classList.remove('loading');
+
+    if (!res) return;
+
+    if (res.success) {
+      alert.textContent = '✅ Logged in! Redirecting…';
+      alert.className   = 'auth-alert success show';
+      setTimeout(() => { window.location.href = 'profile.html'; }, 800);
+    } else {
+      if (res.errors) {
+        showFieldErrors(res.errors);
+      } else {
+        alert.textContent = res.message || 'Login failed. Please try again.';
+        alert.className   = 'auth-alert error show';
+      }
+    }
+  });
+</script>
+</body>
+</html>

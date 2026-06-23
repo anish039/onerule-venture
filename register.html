@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- OneRule Venture — auth/register.html -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account – OneRule Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="auth.css" />
+  <style>
+    .auth-card { max-width: 500px; }
+  </style>
+</head>
+<body>
+
+<button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+
+<div class="auth-card">
+  <a href="../index.html" class="auth-brand">
+    <div class="auth-logo-icon"><i class="fas fa-bolt"></i></div>
+    <span class="auth-brand-name">OneRule Venture</span>
+  </a>
+
+  <h1 class="auth-title">Create your account</h1>
+  <p class="auth-sub">Join 12,000+ entrepreneurs growing with OneRule.</p>
+
+  <div class="auth-alert" id="alert" role="alert"></div>
+
+  <!-- Account type selector -->
+  <p class="form-label" style="margin-bottom:10px">I am a…</p>
+  <div class="type-toggle">
+    <label class="type-option selected" id="type-existing">
+      <input type="radio" name="account_type" value="existing_owner" checked />
+      <i class="fas fa-building"></i>
+      <span>Existing Business Owner</span>
+    </label>
+    <label class="type-option" id="type-budding">
+      <input type="radio" name="account_type" value="budding_entrepreneur" />
+      <i class="fas fa-seedling"></i>
+      <span>Budding Entrepreneur</span>
+    </label>
+  </div>
+
+  <form id="register-form" novalidate>
+    <input type="hidden" name="account_type" id="account_type_field" value="existing_owner" />
+
+    <div class="form-group">
+      <label class="form-label" for="full_name">Full name</label>
+      <input class="form-input" id="full_name" name="full_name" type="text"
+        autocomplete="name" placeholder="Rajesh Kumar" required />
+      <div class="field-error" data-error="full_name"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="email">Email address</label>
+      <input class="form-input" id="email" name="email" type="email"
+        autocomplete="email" placeholder="rajesh@mybusiness.in" required />
+      <div class="field-error" data-error="email"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="password">Password</label>
+      <div class="input-wrap">
+        <input class="form-input" id="password" name="password" type="password"
+          autocomplete="new-password" placeholder="Min. 8 characters" required />
+        <button type="button" class="toggle-pw" onclick="togglePw('password', this)">
+          <i class="fas fa-eye"></i>
+        </button>
+      </div>
+      <div class="pw-strength"><div class="pw-strength-fill" id="pw-fill"></div></div>
+      <div class="pw-strength-text" id="pw-text"></div>
+      <div class="field-error" data-error="password"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="confirm_password">Confirm password</label>
+      <div class="input-wrap">
+        <input class="form-input" id="confirm_password" name="confirm_password" type="password"
+          autocomplete="new-password" placeholder="Repeat password" required />
+        <button type="button" class="toggle-pw" onclick="togglePw('confirm_password', this)">
+          <i class="fas fa-eye"></i>
+        </button>
+      </div>
+      <div class="field-error" data-error="confirm_password"></div>
+    </div>
+
+    <div class="checkbox-wrap">
+      <input type="checkbox" id="terms" name="terms" required />
+      <label class="checkbox-label" for="terms">
+        I agree to the <a href="#" class="auth-link">Terms of Service</a> and
+        <a href="#" class="auth-link">Privacy Policy</a>
+      </label>
+    </div>
+    <div class="field-error" data-error="terms" style="margin-top:-10px;margin-bottom:14px"></div>
+
+    <button type="submit" class="btn-auth" id="submit-btn">
+      <div class="spinner"></div>
+      <span class="btn-label"><i class="fas fa-bolt"></i> Create Account</span>
+    </button>
+  </form>
+
+  <div class="auth-footer">
+    Already have an account? <a href="login.html" class="auth-link">Log in</a>
+  </div>
+</div>
+
+<script src="auth-api.js"></script>
+<script>
+  initTheme();
+  redirectIfLoggedIn();
+
+  // Account type toggle
+  document.querySelectorAll('.type-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.type-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      document.getElementById('account_type_field').value = opt.querySelector('input').value;
+    });
+  });
+
+  // Password strength
+  document.getElementById('password').addEventListener('input', function() {
+    const { score, label, color } = scorePassword(this.value);
+    const fill = document.getElementById('pw-fill');
+    const text = document.getElementById('pw-text');
+    fill.style.width    = `${(score / 5) * 100}%`;
+    fill.style.background = color;
+    text.textContent    = label;
+    text.style.color    = color;
+  });
+
+  function togglePw(id, btn) {
+    const input = document.getElementById(id);
+    const icon  = btn.querySelector('i');
+    input.type = input.type === 'password' ? 'text' : 'password';
+    icon.className = input.type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+  }
+
+  document.getElementById('register-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearFieldErrors();
+
+    const form     = e.target;
+    const fullName = form.full_name.value.trim();
+    const email    = form.email.value.trim();
+    const password = form.password.value;
+    const confirm  = form.confirm_password.value;
+    const terms    = form.terms.checked;
+    const accType  = document.getElementById('account_type_field').value;
+    const alert    = document.getElementById('alert');
+
+    // Client-side checks
+    const errors = {};
+    if (!fullName || fullName.length < 2) errors.full_name = 'Name must be at least 2 characters.';
+    if (!email || !email.includes('@'))   errors.email = 'Valid email required.';
+    if (password.length < 8)             errors.password = 'Password must be at least 8 characters.';
+    if (password !== confirm)            errors.confirm_password = 'Passwords do not match.';
+    if (!terms)                          errors.terms = 'You must accept the terms to continue.';
+
+    if (Object.keys(errors).length) { showFieldErrors(errors); return; }
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.classList.add('loading');
+    alert.className = 'auth-alert';
+
+    const res = await AuthAPI.register({ email, password, full_name: fullName, account_type: accType });
+
+    btn.disabled = false;
+    btn.classList.remove('loading');
+
+    if (!res) return;
+
+    if (res.success) {
+      alert.innerHTML = '✅ Account created! Check your email to verify your account.';
+      alert.className = 'auth-alert success show';
+      form.reset();
+    } else {
+      if (res.errors) showFieldErrors(res.errors);
+      else {
+        alert.textContent = res.message || 'Registration failed.';
+        alert.className   = 'auth-alert error show';
+      }
+    }
+  });
+</script>
+</body>
+</html>

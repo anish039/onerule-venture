@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<!-- OneRule Venture — auth/profile.html  (Profile Dashboard) -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile – OneRule Venture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* Profile-specific overrides and additions */
+    body { padding-top: 0; }
+
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .profile-sidebar {
+      background: var(--color-primary);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    [data-theme="dark"] .profile-sidebar {
+      background: #050810;
+      border-right: 1px solid var(--color-border);
+    }
+
+    .sidebar-top {
+      padding: 28px 24px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 800;
+      text-decoration: none;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-brand-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg,var(--color-accent),var(--color-accent-2));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: .85rem;
+    }
+
+    /* Avatar */
+    .sidebar-avatar-wrap {
+      text-align: center;
+      padding: 20px 0 8px;
+    }
+
+    .avatar-ring {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,var(--color-accent),var(--color-accent-2));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .avatar-ring img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .avatar-initials {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 800;
+      color: #fff;
+    }
+
+    .avatar-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.5);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity var(--transition);
+      border-radius: 50%;
+      color: #fff; font-size: .8rem;
+    }
+    .avatar-ring:hover .avatar-overlay { opacity: 1; }
+
+    .sidebar-name {
+      color: #fff; font-family: var(--font-display);
+      font-size: .95rem; font-weight: 700; margin-bottom: 4px;
+    }
+    .sidebar-email {
+      color: rgba(255,255,255,.45);
+      font-size: .75rem; margin-bottom: 12px;
+    }
+    .sidebar-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: .7rem; font-weight: 700;
+      background: rgba(26,86,219,.3);
+      color: #93c5fd;
+    }
+
+    /* Nav items */
+    .sidebar-nav { padding: 16px 12px; flex: 1; }
+
+    .sidebar-section-label {
+      padding: 10px 14px 6px;
+      font-size: .65rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+    }
+
+    .s-nav-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: rgba(255,255,255,.5);
+      font-size: .86rem; font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+      margin-bottom: 2px;
+    }
+    .s-nav-item i { width: 16px; text-align: center; font-size: .88rem; }
+    .s-nav-item:hover { background: rgba(255,255,255,.07); color: rgba(255,255,255,.85); }
+    .s-nav-item.active { background: rgba(26,86,219,.25); color: #93c5fd; }
+
+    .sidebar-footer {
+      padding: 16px 12px;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    /* ── Main ── */
+    .profile-main {
+      background: var(--color-surface);
+      min-height: 100vh;
+    }
+
+    .profile-topbar {
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 32px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+
+    .topbar-title {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700;
+    }
+
+    .topbar-actions { display: flex; align-items: center; gap: 10px; }
+
+    .verify-banner {
+      background: rgba(245,158,11,.08);
+      border-bottom: 1px solid rgba(245,158,11,.2);
+      padding: 10px 32px;
+      display: flex; align-items: center; gap: 12px;
+      font-size: .84rem; color: #92400e;
+    }
+    [data-theme="dark"] .verify-banner { color: var(--color-warning); }
+    .verify-banner i { color: var(--color-warning); }
+    .verify-banner a { color: var(--color-accent); font-weight: 600; }
+
+    .profile-content { padding: 28px 32px; }
+
+    /* Panels */
+    .panel {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .panel-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .panel-title {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700;
+    }
+
+    /* Form grid */
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+
+    .field-group { margin-bottom: 18px; }
+    .field-label {
+      display: block; font-size: .78rem; font-weight: 600;
+      color: var(--color-text-muted); margin-bottom: 6px;
+      letter-spacing: .02em;
+    }
+    .field-input {
+      width: 100%; padding: 10px 14px;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-bg); color: var(--color-text);
+      font-family: var(--font-body); font-size: .9rem;
+      outline: none; transition: border-color var(--transition);
+    }
+    .field-input:focus { border-color: var(--color-accent); }
+    textarea.field-input { resize: vertical; min-height: 90px; }
+    select.field-input { cursor: pointer; }
+
+    /* Avatar upload zone */
+    .avatar-upload-zone {
+      display: flex; align-items: center; gap: 24px;
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1.5px dashed var(--color-border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 24px;
+      cursor: pointer;
+      transition: border-color var(--transition);
+    }
+    .avatar-upload-zone:hover { border-color: var(--color-accent); }
+
+    .avatar-preview {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,var(--color-accent),var(--color-accent-2));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 800; flex-shrink: 0;
+      overflow: hidden;
+    }
+    .avatar-preview img { width:100%;height:100%;object-fit:cover;border-radius:50%; }
+
+    /* Activity log */
+    .activity-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem;
+    }
+    .activity-detail h5 { font-size: .86rem; margin-bottom: 3px; }
+    .activity-detail p  { font-size: .76rem; color: var(--color-text-muted); }
+    .activity-time { font-size: .75rem; color: var(--color-text-light); margin-left: auto; flex-shrink: 0; }
+
+    /* Toggle switch */
+    .toggle-field {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .toggle-field:last-child { border-bottom: none; }
+    .toggle-field-label h5 { font-size: .88rem; margin-bottom: 4px; }
+    .toggle-field-label p  { font-size: .8rem; color: var(--color-text-muted); }
+    .toggle-sw {
+      position: relative; width: 44px; height: 24px; flex-shrink: 0;
+    }
+    .toggle-sw input { display: none; }
+    .toggle-track {
+      position: absolute; inset: 0;
+      background: var(--color-border);
+      border-radius: 100px; cursor: pointer;
+      transition: background var(--transition);
+    }
+    .toggle-track::before {
+      content: ''; position: absolute;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #fff; top: 3px; left: 3px;
+      transition: transform var(--transition);
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    }
+    .toggle-sw input:checked + .toggle-track { background: var(--color-accent); }
+    .toggle-sw input:checked + .toggle-track::before { transform: translateX(20px); }
+
+    /* Section danger zone */
+    .danger-zone {
+      border: 1px solid rgba(239,68,68,.25);
+      background: rgba(239,68,68,.04);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+    }
+    .danger-zone h4 { color: var(--color-danger); margin-bottom: 8px; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .profile-layout { grid-template-columns: 1fr; }
+      .profile-sidebar { display: none; }
+      .form-row-2, .form-row-3 { grid-template-columns: 1fr; }
+      .profile-content { padding: 20px 16px; }
+      .profile-topbar { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="profile-layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="profile-sidebar">
+    <div class="sidebar-top">
+      <a href="../index.html" class="sidebar-brand">
+        <div class="sidebar-brand-icon"><i class="fas fa-bolt"></i></div>
+        OneRule Venture
+      </a>
+      <div class="sidebar-avatar-wrap">
+        <div class="avatar-ring" onclick="document.getElementById('avatar-file').click()">
+          <div class="avatar-initials" id="sb-initials">–</div>
+          <div class="avatar-overlay"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="sidebar-name" id="sb-name">Loading…</div>
+        <div class="sidebar-email" id="sb-email"></div>
+        <span class="sidebar-badge" id="sb-badge">User</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Account</div>
+      <a class="s-nav-item active" data-panel="overview" onclick="switchPanel('overview', this)">
+        <i class="fas fa-th-large"></i> Overview
+      </a>
+      <a class="s-nav-item" data-panel="profile" onclick="switchPanel('profile', this)">
+        <i class="fas fa-user"></i> Edit Profile
+      </a>
+      <a class="s-nav-item" data-panel="business" onclick="switchPanel('business', this)">
+        <i class="fas fa-building"></i> Business Info
+      </a>
+      <a class="s-nav-item" data-panel="security" onclick="switchPanel('security', this)">
+        <i class="fas fa-lock"></i> Security
+      </a>
+      <a class="s-nav-item" data-panel="privacy" onclick="switchPanel('privacy', this)">
+        <i class="fas fa-shield-alt"></i> Privacy
+      </a>
+      <a class="s-nav-item" data-panel="activity" onclick="switchPanel('activity', this)">
+        <i class="fas fa-history"></i> Login Activity
+      </a>
+
+      <div class="sidebar-section-label" style="margin-top:12px">Platform</div>
+      <a class="s-nav-item" href="../dashboard.html">
+        <i class="fas fa-chart-bar"></i> Dashboard
+      </a>
+      <a class="s-nav-item" href="../tools.html">
+        <i class="fas fa-calculator"></i> Tools
+      </a>
+      <a class="s-nav-item" href="../startup-resources.html">
+        <i class="fas fa-seedling"></i> Resources
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="s-nav-item" data-panel="danger" onclick="switchPanel('danger', this)" style="color:rgba(239,68,68,.6)">
+        <i class="fas fa-trash"></i> Delete Account
+      </a>
+      <a class="s-nav-item" id="logout-btn" style="color:rgba(239,68,68,.6)">
+        <i class="fas fa-sign-out-alt"></i> Log Out
+      </a>
+    </div>
+  </aside>
+
+  <!-- ── Main ── -->
+  <div class="profile-main">
+
+    <!-- Top bar -->
+    <div class="profile-topbar">
+      <span class="topbar-title" id="panel-title">Overview</span>
+      <div class="topbar-actions">
+        <button class="theme-toggle" onclick="toggleTheme()" style="width:36px;height:36px;border-radius:9px;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-muted);cursor:pointer;font-size:.88rem">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="../index.html" class="btn btn-ghost btn-sm">← Home</a>
+      </div>
+    </div>
+
+    <!-- Verify email banner -->
+    <div class="verify-banner" id="verify-banner" style="display:none">
+      <i class="fas fa-exclamation-circle"></i>
+      <span>Your email is not verified. <a href="#">Resend verification email</a></span>
+    </div>
+
+    <div class="profile-content">
+
+      <!-- ══ OVERVIEW PANEL ══ -->
+      <div id="panel-overview" class="panel-section">
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Account Overview</h3>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px" id="overview-stats">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Quick Profile Summary</h3>
+            <button class="btn btn-outline btn-sm" onclick="switchPanel('profile', document.querySelector('[data-panel=profile]'))">Edit Profile</button>
+          </div>
+          <div id="overview-summary" style="display:grid;gap:14px">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PROFILE PANEL ══ -->
+      <div id="panel-profile" class="panel-section" style="display:none">
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Profile Picture</h3>
+          </div>
+          <div class="avatar-upload-zone" onclick="document.getElementById('avatar-file').click()">
+            <div class="avatar-preview" id="avatar-preview">
+              <span id="avatar-init-big">–</span>
+            </div>
+            <div>
+              <p style="font-size:.88rem;font-weight:600;margin-bottom:4px;color:var(--color-text)">Upload a profile photo</p>
+              <p style="font-size:.8rem;color:var(--color-text-muted)">JPEG, PNG, or WebP. Max 2 MB. Will be cropped to 400×400.</p>
+              <button type="button" class="btn btn-outline btn-sm" style="margin-top:10px;pointer-events:none">
+                <i class="fas fa-upload"></i> Choose Photo
+              </button>
+            </div>
+          </div>
+          <input type="file" id="avatar-file" accept="image/*" style="display:none" onchange="uploadAvatar(this)" />
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Personal Information</h3>
+          </div>
+          <form id="profile-form">
+            <div class="form-row-2">
+              <div class="field-group">
+                <label class="field-label">Full Name</label>
+                <input class="field-input" name="full_name" type="text" placeholder="Rajesh Kumar" />
+              </div>
+              <div class="field-group">
+                <label class="field-label">Display Name</label>
+                <input class="field-input" name="display_name" type="text" placeholder="How you appear publicly" />
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="field-group">
+                <label class="field-label">Phone Number</label>
+                <input class="field-input" name="phone" type="tel" placeholder="+91 98765 43210" />
+              </div>
+              <div class="field-group">
+                <label class="field-label">Gender</label>
+                <select class="field-input" name="gender">
+                  <option value="">Prefer not to say</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                  <option value="prefer_not_to_say">Prefer not to say</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Bio</label>
+              <textarea class="field-input" name="bio" placeholder="A short description about yourself (max 500 chars)…" maxlength="500"></textarea>
+            </div>
+            <div class="form-row-3">
+              <div class="field-group">
+                <label class="field-label">City</label>
+                <input class="field-input" name="city" type="text" placeholder="Mumbai" />
+              </div>
+              <div class="field-group">
+                <label class="field-label">State</label>
+                <input class="field-input" name="state" type="text" placeholder="Maharashtra" />
+              </div>
+              <div class="field-group">
+                <label class="field-label">Pincode</label>
+                <input class="field-input" name="pincode" type="text" placeholder="400001" maxlength="6" />
+              </div>
+            </div>
+            <hr style="border:none;border-top:1px solid var(--color-border);margin:8px 0 20px" />
+            <p class="field-label" style="margin-bottom:14px">Social & Web Links</p>
+            <div class="form-row-2">
+              <div class="field-group">
+                <label class="field-label"><i class="fab fa-linkedin" style="color:#0077b5"></i> LinkedIn</label>
+                <input class="field-input" name="linkedin_url" type="url" placeholder="https://linkedin.com/in/yourname" />
+              </div>
+              <div class="field-group">
+                <label class="field-label"><i class="fab fa-twitter" style="color:#1da1f2"></i> Twitter / X</label>
+                <input class="field-input" name="twitter_url" type="url" placeholder="https://twitter.com/handle" />
+              </div>
+              <div class="field-group">
+                <label class="field-label"><i class="fab fa-instagram" style="color:#e1306c"></i> Instagram</label>
+                <input class="field-input" name="instagram_url" type="url" placeholder="https://instagram.com/handle" />
+              </div>
+              <div class="field-group">
+                <label class="field-label"><i class="fas fa-globe" style="color:var(--color-accent)"></i> Website</label>
+                <input class="field-input" name="website_url" type="url" placeholder="https://yourwebsite.com" />
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:8px">
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+              <button type="button" class="btn btn-outline" onclick="loadProfileData()">Discard</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ══ BUSINESS PANEL ══ -->
+      <div id="panel-business" class="panel-section" style="display:none">
+        <div class="panel">
+          <h3 class="panel-title" style="margin-bottom:24px">Business Information</h3>
+          <form id="business-form">
+            <div class="form-row-2">
+              <div class="field-group">
+                <label class="field-label">Business Name</label>
+                <input class="field-input" name="business_name" type="text" placeholder="My Company Pvt. Ltd." />
+              </div>
+              <div class="field-group">
+                <label class="field-label">Industry / Category</label>
+                <select class="field-input" name="category">
+                  <option value="">Select category…</option>
+                  <option>Technology / SaaS</option>
+                  <option>E-Commerce / D2C</option>
+                  <option>Manufacturing</option>
+                  <option>Food & Beverage</option>
+                  <option>Healthcare</option>
+                  <option>Education / EdTech</option>
+                  <option>Logistics / Supply Chain</option>
+                  <option>Finance / Fintech</option>
+                  <option>Agriculture / AgriTech</option>
+                  <option>Real Estate</option>
+                  <option>Retail / Wholesale</option>
+                  <option>Services / Consulting</option>
+                  <option>Media / Entertainment</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Business Description</label>
+              <textarea class="field-input" name="description" placeholder="What does your business do? (max 1000 chars)" maxlength="1000"></textarea>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Tagline</label>
+              <input class="field-input" name="tagline" type="text" placeholder="Your one-line value proposition" maxlength="200" />
+            </div>
+            <div class="form-row-3">
+              <div class="field-group">
+                <label class="field-label">Founded Year</label>
+                <input class="field-input" name="founded_year" type="number" placeholder="2020" min="1900" max="2025" />
+              </div>
+              <div class="field-group">
+                <label class="field-label">Team Size</label>
+                <select class="field-input" name="employee_count">
+                  <option value="">Select…</option>
+                  <option value="1">Just me</option>
+                  <option value="2-10">2–10</option>
+                  <option value="11-50">11–50</option>
+                  <option value="51-200">51–200</option>
+                  <option value="200+">200+</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label class="field-label">Business Stage</label>
+                <select class="field-input" name="business_stage">
+                  <option value="">Select…</option>
+                  <option value="idea">Idea Stage</option>
+                  <option value="mvp">MVP</option>
+                  <option value="early">Early Traction</option>
+                  <option value="growth">Growth</option>
+                  <option value="scale">Scaling</option>
+                  <option value="mature">Mature</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="field-group">
+                <label class="field-label">Annual Revenue</label>
+                <select class="field-input" name="annual_revenue">
+                  <option value="">Select…</option>
+                  <option value="pre-revenue">Pre-Revenue</option>
+                  <option value="<10L">Below ₹10 Lakh</option>
+                  <option value="10L-50L">₹10L – ₹50L</option>
+                  <option value="50L-1Cr">₹50L – ₹1 Cr</option>
+                  <option value="1Cr-10Cr">₹1 Cr – ₹10 Cr</option>
+                  <option value="10Cr+">Above ₹10 Cr</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label class="field-label">Business Website</label>
+                <input class="field-input" name="website" type="url" placeholder="https://mybusiness.in" />
+              </div>
+            </div>
+            <hr style="border:none;border-top:1px solid var(--color-border);margin:8px 0 20px" />
+            <p class="field-label" style="margin-bottom:14px">Business Address</p>
+            <div class="field-group">
+              <label class="field-label">Address Line 1</label>
+              <input class="field-input" name="address_line1" type="text" placeholder="Street, Building, Area" />
+            </div>
+            <div class="form-row-3">
+              <div class="field-group">
+                <label class="field-label">City</label>
+                <input class="field-input" name="city" type="text" placeholder="Bengaluru" />
+              </div>
+              <div class="field-group">
+                <label class="field-label">State</label>
+                <input class="field-input" name="state" type="text" placeholder="Karnataka" />
+              </div>
+              <div class="field-group">
+                <label class="field-label">Pincode</label>
+                <input class="field-input" name="pincode" type="text" placeholder="560001" maxlength="6" />
+              </div>
+            </div>
+            <hr style="border:none;border-top:1px solid var(--color-border);margin:8px 0 20px" />
+            <p class="field-label" style="margin-bottom:14px">Tax & Registration (optional)</p>
+            <div class="form-row-2">
+              <div class="field-group">
+                <label class="field-label">GSTIN</label>
+                <input class="field-input" name="gstin" type="text" placeholder="22AAAAA0000A1Z5" maxlength="15" style="font-family:monospace" />
+              </div>
+              <div class="field-group">
+                <label class="field-label">PAN</label>
+                <input class="field-input" name="pan" type="text" placeholder="AAAAA0000A" maxlength="10" style="font-family:monospace" />
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:8px">
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Business Info</button>
+              <button type="button" class="btn btn-outline" onclick="loadBusinessData()">Discard</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ══ SECURITY PANEL ══ -->
+      <div id="panel-security" class="panel-section" style="display:none">
+        <div class="panel">
+          <h3 class="panel-title" style="margin-bottom:24px">Change Password</h3>
+          <form id="password-form" style="max-width:420px">
+            <div class="field-group">
+              <label class="field-label">Current Password</label>
+              <input class="field-input" name="current_password" type="password" placeholder="Your current password" />
+            </div>
+            <div class="field-group">
+              <label class="field-label">New Password</label>
+              <input class="field-input" name="new_password" id="new-pw" type="password" placeholder="At least 8 characters" oninput="updatePwStrength(this.value)" />
+              <div style="height:4px;background:var(--color-border);border-radius:100px;margin-top:8px;overflow:hidden">
+                <div id="pw-bar" style="height:100%;width:0%;border-radius:100px;transition:all .4s"></div>
+              </div>
+              <span id="pw-bar-label" style="font-size:.74rem;color:var(--color-text-muted)"></span>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Confirm New Password</label>
+              <input class="field-input" name="confirm_new_password" type="password" placeholder="Repeat new password" />
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-lock"></i> Update Password</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ══ PRIVACY PANEL ══ -->
+      <div id="panel-privacy" class="panel-section" style="display:none">
+        <div class="panel">
+          <h3 class="panel-title" style="margin-bottom:20px">Privacy Settings</h3>
+          <div class="toggle-field">
+            <div class="toggle-field-label">
+              <h5>Public Profile</h5>
+              <p>Allow other users to view your profile details</p>
+            </div>
+            <label class="toggle-sw">
+              <input type="checkbox" id="toggle-profile-public" onchange="savePrivacy('profile', this.checked)" />
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+          <div class="toggle-field">
+            <div class="toggle-field-label">
+              <h5>Public Business Page</h5>
+              <p>Make your business information visible on the platform</p>
+            </div>
+            <label class="toggle-sw">
+              <input type="checkbox" id="toggle-business-public" onchange="savePrivacy('business', this.checked)" />
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ ACTIVITY PANEL ══ -->
+      <div id="panel-activity" class="panel-section" style="display:none">
+        <div class="panel">
+          <h3 class="panel-title" style="margin-bottom:20px">Recent Login Activity</h3>
+          <div id="activity-list">
+            <p style="color:var(--color-text-muted);font-size:.88rem">Loading activity…</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ DANGER PANEL ══ -->
+      <div id="panel-danger" class="panel-section" style="display:none">
+        <div class="danger-zone">
+          <h4><i class="fas fa-exclamation-triangle"></i> Danger Zone</h4>
+          <p style="font-size:.88rem;color:var(--color-text-muted);margin:10px 0 20px">Deleting your account is permanent and cannot be undone. All your data will be deactivated.</p>
+          <form id="delete-form" style="max-width:380px">
+            <div class="field-group">
+              <label class="field-label">Confirm by entering your password</label>
+              <input class="field-input" name="password" type="password" placeholder="Your password" style="border-color:rgba(239,68,68,.3)" />
+            </div>
+            <button type="submit" class="btn btn-sm" style="background:var(--color-danger);color:#fff;padding:10px 20px;border-radius:10px;font-weight:700">
+              <i class="fas fa-trash"></i> Permanently Delete Account
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div><!-- /profile-content -->
+  </div><!-- /profile-main -->
+
+</div><!-- /profile-layout -->
+
+<script src="auth-api.js"></script>
+<script>
+// ── Theme & init ──────────────────────────────────────────────
+const stored = localStorage.getItem('orv-theme') || 'light';
+document.documentElement.setAttribute('data-theme', stored);
+function toggleTheme() {
+  const c = document.documentElement.getAttribute('data-theme');
+  const n = c === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', n);
+  localStorage.setItem('orv-theme', n);
+}
+
+// ── Guard ─────────────────────────────────────────────────────
+const currentUser = ORV.getUser();
+if (!currentUser) { window.location.href = 'login.html?msg=Please+log+in'; }
+
+let userId = currentUser?.id;
+let profileData = null;
+let businessData = null;
+
+// ── Panel switcher ────────────────────────────────────────────
+const PANEL_TITLES = {
+  overview: 'Overview', profile: 'Edit Profile', business: 'Business Info',
+  security: 'Security', privacy: 'Privacy', activity: 'Login Activity', danger: 'Danger Zone'
+};
+
+function switchPanel(name, el) {
+  document.querySelectorAll('.panel-section').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.s-nav-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('panel-' + name).style.display = 'block';
+  if (el) el.classList.add('active');
+  document.getElementById('panel-title').textContent = PANEL_TITLES[name] || name;
+  if (name === 'activity') loadActivity();
+}
+
+// ── Load all data on mount ─────────────────────────────────────
+async function loadAll() {
+  const res = await AuthAPI.me();
+  if (!res?.success) return;
+  const { user, profile, business } = res.data;
+
+  // Update sidebar
+  const name = profile?.display_name || profile?.full_name || user.email.split('@')[0];
+  document.getElementById('sb-name').textContent    = name;
+  document.getElementById('sb-email').textContent   = user.email;
+  document.getElementById('sb-badge').textContent   = user.account_type === 'existing_owner' ? 'Business Owner' : 'Entrepreneur';
+  document.getElementById('sb-initials').textContent = getInitials(name);
+
+  // Avatar
+  if (profile?.avatar_url) {
+    document.getElementById('sb-initials').style.display = 'none';
+    const img = document.createElement('img');
+    img.src = `http://localhost:5000${profile.avatar_url}`;
+    img.alt = name;
+    document.querySelector('.avatar-ring').insertBefore(img, document.querySelector('.avatar-overlay'));
+    updateAvatarPreview(profile.avatar_url, name);
+  }
+
+  // Verify banner
+  if (!user.is_verified) document.getElementById('verify-banner').style.display = 'flex';
+
+  // Overview
+  renderOverview(user, profile, business);
+
+  // Fill profile form
+  profileData = profile;
+  fillForm('profile-form', profile);
+  // Big avatar initials
+  document.getElementById('avatar-init-big').textContent = getInitials(name);
+
+  // Fill business form
+  businessData = business;
+  fillForm('business-form', business);
+
+  // Privacy toggles
+  document.getElementById('toggle-profile-public').checked  = Boolean(profile?.is_public);
+  document.getElementById('toggle-business-public').checked = Boolean(business?.is_public);
+}
+
+function getInitials(name) {
+  if (!name) return '?';
+  return name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+}
+
+function fillForm(formId, data) {
+  if (!data) return;
+  const form = document.getElementById(formId);
+  for (const [key, val] of Object.entries(data)) {
+    const el = form.querySelector(`[name="${key}"]`);
+    if (el && val !== null && val !== undefined) el.value = val;
+  }
+}
+
+// ── Overview ─────────────────────────────────────────────────
+function renderOverview(user, profile, biz) {
+  const stats = [
+    { icon: '📅', label: 'Member Since', value: user.created_at ? new Date(user.created_at * 1000).toLocaleDateString('en-IN', { month:'short', year:'numeric' }) : '—' },
+    { icon: '🔐', label: 'Total Logins', value: user.login_count || 0 },
+    { icon: biz?.business_name ? '🏢' : '💡', label: 'Business', value: biz?.business_name || 'Not set' },
+    { icon: '✅', label: 'Email Verified', value: user.is_verified ? 'Yes' : 'No' },
+  ];
+  document.getElementById('overview-stats').innerHTML = stats.map(s => `
+    <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:12px;padding:18px;text-align:center">
+      <div style="font-size:1.5rem;margin-bottom:8px">${s.icon}</div>
+      <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:4px">${s.value}</div>
+      <div style="font-size:.75rem;color:var(--color-text-muted)">${s.label}</div>
+    </div>
+  `).join('');
+
+  const fields = [
+    { label: 'Name',     value: profile?.full_name || '—' },
+    { label: 'Phone',    value: profile?.phone || '—' },
+    { label: 'City',     value: profile?.city  || '—' },
+    { label: 'Bio',      value: profile?.bio   || '—' },
+    { label: 'Website',  value: profile?.website_url || '—' },
+    { label: 'LinkedIn', value: profile?.linkedin_url || '—' },
+  ];
+  document.getElementById('overview-summary').innerHTML = fields.map(f => `
+    <div style="display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--color-border)">
+      <span style="font-size:.8rem;font-weight:600;color:var(--color-text-muted);width:90px;flex-shrink:0">${f.label}</span>
+      <span style="font-size:.88rem;color:var(--color-text)">${f.value.length > 60 ? f.value.slice(0,60)+'…' : f.value}</span>
+    </div>
+  `).join('');
+}
+
+function loadProfileData() { fillForm('profile-form', profileData); }
+function loadBusinessData() { fillForm('business-form', businessData); }
+
+// ── Avatar upload ─────────────────────────────────────────────
+async function uploadAvatar(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { showToast('File too large. Max 2MB.', 'error'); return; }
+  showToast('Uploading…', 'info');
+  const res = await UserAPI.uploadAvatar(userId, file);
+  if (res?.success) {
+    showToast('Avatar updated!', 'success');
+    updateAvatarPreview(res.data.avatar_url, currentUser.email);
+  } else {
+    showToast(res?.message || 'Upload failed.', 'error');
+  }
+}
+
+function updateAvatarPreview(url, name) {
+  const fullUrl = url.startsWith('http') ? url : `http://localhost:5000${url}`;
+  const prev = document.getElementById('avatar-preview');
+  const initBig = document.getElementById('avatar-init-big');
+  if (initBig) initBig.style.display = 'none';
+  const existing = prev.querySelector('img');
+  if (existing) existing.remove();
+  const img = document.createElement('img');
+  img.src = fullUrl; img.alt = name;
+  prev.appendChild(img);
+}
+
+// ── Profile form submit ───────────────────────────────────────
+document.getElementById('profile-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = formToObject(e.target);
+  const res  = await UserAPI.updateProfile(userId, data);
+  if (res?.success) { showToast('Profile saved!', 'success'); profileData = res.data; ORV.setUser({ ...currentUser, ...data }); }
+  else              { showToast(res?.message || 'Save failed.', 'error'); }
+});
+
+// ── Business form submit ──────────────────────────────────────
+document.getElementById('business-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = formToObject(e.target);
+  const res  = await UserAPI.updateBusiness(userId, data);
+  if (res?.success) { showToast('Business info saved!', 'success'); businessData = res.data; }
+  else              { showToast(res?.message || 'Save failed.', 'error'); }
+});
+
+// ── Password form ─────────────────────────────────────────────
+function updatePwStrength(pw) {
+  const { score, label, color } = scorePassword(pw);
+  document.getElementById('pw-bar').style.width      = `${(score/5)*100}%`;
+  document.getElementById('pw-bar').style.background = color;
+  document.getElementById('pw-bar-label').textContent = label;
+  document.getElementById('pw-bar-label').style.color = color;
+}
+
+document.getElementById('password-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const d = formToObject(e.target);
+  if (d.new_password !== d.confirm_new_password) { showToast('New passwords do not match.', 'error'); return; }
+  const res = await AuthAPI.changePassword(d.current_password, d.new_password);
+  if (res?.success) {
+    showToast('Password updated. Please log in again.', 'success');
+    setTimeout(() => { ORV.clearUser(); window.location.href = 'login.html'; }, 1800);
+  } else {
+    showToast(res?.message || 'Password change failed.', 'error');
+  }
+});
+
+// ── Privacy toggles ───────────────────────────────────────────
+async function savePrivacy(type, val) {
+  if (type === 'profile')   await UserAPI.updateProfile(userId,  { is_public: val });
+  if (type === 'business')  await UserAPI.updateBusiness(userId, { is_public: val });
+  showToast(`${type === 'profile' ? 'Profile' : 'Business'} visibility updated.`, 'success');
+}
+
+// ── Activity ──────────────────────────────────────────────────
+async function loadActivity() {
+  const res = await UserAPI.getActivity(userId, 15);
+  if (!res?.success) return;
+  const list = document.getElementById('activity-list');
+  if (!res.data?.length) { list.innerHTML = '<p style="color:var(--color-text-muted);font-size:.88rem">No activity recorded yet.</p>'; return; }
+  list.innerHTML = res.data.map(a => {
+    const isSuccess = a.status === 'success';
+    const date = new Date(a.created_at * 1000);
+    const timeStr = date.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }) + ' · ' + date.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
+    return `
+      <div class="activity-item">
+        <div class="activity-icon ${isSuccess ? 'icon-green' : 'icon-red'}" style="width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.85rem">
+          <i class="fas fa-${isSuccess ? 'check' : 'times'}"></i>
+        </div>
+        <div class="activity-detail">
+          <h5>${isSuccess ? 'Successful login' : a.status === 'locked' ? 'Account locked' : 'Failed login attempt'}</h5>
+          <p>${a.ip_address || 'Unknown IP'} · ${(a.user_agent || 'Unknown device').slice(0,60)}</p>
+        </div>
+        <span class="activity-time">${timeStr}</span>
+      </div>`;
+  }).join('');
+}
+
+// ── Delete account ────────────────────────────────────────────
+document.getElementById('delete-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!confirm('Are you absolutely sure? This cannot be undone.')) return;
+  const d   = formToObject(e.target);
+  const res = await UserAPI.deleteAccount(userId, d.password);
+  if (res?.success) {
+    showToast('Account deleted.', 'success');
+    ORV.clearUser();
+    setTimeout(() => { window.location.href = '../index.html'; }, 1500);
+  } else {
+    showToast(res?.message || 'Deletion failed.', 'error');
+  }
+});
+
+// ── Logout ────────────────────────────────────────────────────
+document.getElementById('logout-btn').addEventListener('click', async () => {
+  await AuthAPI.logout();
+  window.location.href = '../index.html';
+});
+
+// ── Init ──────────────────────────────────────────────────────
+loadAll();
+</script>
+</body>
+</html>
